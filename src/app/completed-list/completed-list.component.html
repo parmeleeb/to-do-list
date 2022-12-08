@@ -1,1 +1,23 @@
-<p>completed-list works!</p>
+
+    <!-- Section for adding Completed To Do Items -->
+
+    <div class="list">
+        <div class="div-lable-styling">
+            <label for="To-Do"><!--Enter completed task:--></label>
+            <input type="text" name="completed" placeholder="Enter completed task..." />
+            <button class="add-button-styling" id="add" onclick="addCompletedItem('placeholder text')"> Add </button>
+        </div>
+
+        <!-- List of completed To Do List items -->
+
+        <div class="list-styling">
+        <table>
+            <thead>
+                <th>completed task list</th>
+                <th>Action pane</th>
+            </thead>
+            <tbody id="table-body"></tbody>
+        </table>
+        <p></p>
+        <div id="completed-list"></div>
+    </div>

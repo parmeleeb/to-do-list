@@ -1,0 +1,87 @@
+ _________________________________________
+|KEY / LEGEND:
+|
+| (-) requirement not started
+| (~) requirement under construction
+| (+) requirement met
+|
+| (B) [Comment from Brian]
+| (E) [Comment from Edwin]
+|
+|_________________________________________
+
+(B) [With our POWERS COMBINED, we can do this!]
+
+
+-------------------------------------------
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~
+| General Requirements |
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+/////////////-\\\\\\\\\\\\\
+- Functional Requirements -
+\\\\\\\\\\\\\-/////////////
+
+(-) add items to list
+(-) remove items from list
+(-) edit items already in list
+(-) button to mark item finished
+(-) finished items move to seperate list
+
+
+///////////////-\\\\\\\\\\\\\\\
+- Non-Functional Requirements -
+\\\\\\\\\\\\\\\-///////////////
+
+(+) Maintain thematic consistency (color, font, etc)
+(+) Size images appropriately
+(+) Include alt text with all images
+(+) Collaberate to achieve VICTORY
+(+) Use GitHub branches appropriately to avoid collisions
+(-) Have completed project in Main/Master branch before submitting
+
+
+-------------------------------------------
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+| Section-Specific Requirements |
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+//////-\\\\\\
+- Todo List -
+\\\\\\-//////
+
+(-) display all tasks marked as "To Do"
+(-) contains "add item" button
+
+
+//////-\\\\\\
+- Todo Item -
+\\\\\\-//////
+
+(-) contains "edit item" button
+(-) contains "delete item" button
+(-) contains "complete item" (mark "Finished") button (that moves the item to other list)
+
+
+////////-\\\\\\\\
+- Finished List -
+\\\\\\\\-////////
+
+(-) display all tasks marked as "Finished"
+(-) contains "add item" button
+
+
+////////-\\\\\\\\
+- Finished Item -
+\\\\\\\\-////////
+
+(-) contains "edit item" button
+(-) contains "delete item" button
+(-) contains "uncomplete item" (mark "To Do") button (that moves the item to other list)
+
