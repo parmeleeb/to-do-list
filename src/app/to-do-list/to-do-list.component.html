@@ -1,28 +1,44 @@
 
-    <!-- Section for adding item to To Do List -->
+<!-- Section for adding item to To Do List -->
 
-    <div class="list">
-        <div class="div-lable-styling">
-            <label for="To-Do"><!--Enter To-Do:--></label>
-            <input type="text" name="To-Do" placeholder="Enter to do task..." />
+<main class="list" *ngIf="toDoVisible" >
 
-            <button class="add-button-styling" id="add" onclick="addToDoItem('placeholder text')"> Add </button>
+    <h2>To-Do</h2>
 
-        </div>
+    <div class="div-lable-styling">
+        <label for="to-do"></label>
+        <input [(ngModel)]="taskToAdd" type="text" name="to-do" placeholder="Enter new task..." />
+        <label for="priority">Priority: </label>
+        <input [(ngModel)]="priority" type="checkbox" name="priority" />
+        <button (click)="addTask()" class="add-button-styling" id="add-to-do"> Add </button>
+    </div>
 
-        <!-- List of To Do Items -->
+    <!-- List of To Do Items -->
 
     <div class="list-styling">
-        <table>
-            <thead>
-                <th>To do list</th>
-                <th>Action pane</th>
-            </thead>
-            <tbody id="table-body"></tbody>
-        </table>
-        <p></p>
-        <div id="to-do-list"></div>
 
+        <ng-container id="to-do-list" *ngFor="let task of toDoList">
+            <div>
+
+                <span *ngIf="!task.toEdit">
+                    <span>{{ task.message }}</span>
+                    <span> <button (click)="toggleEdit(task.id)">edit</button> </span>
+                </span>
+
+                <span *ngIf="task.toEdit">
+                    <input [(ngModel)]="task.message"/>
+                    <span> <button (click)="toggleEdit(task.id)">Finish Editing</button> </span>
+                </span>
+
+                <span> <button (click)="completeTask(task.id)">comlpete</button> </span>
+                <span> <button (click)="deleteTask(task.id)">delete</button> </span>
+                <span> <button (click)="moveToTop(task.id)">To Top</button> </span>
+                <span> <button (click)="moveUp(task.id)">^</button> </span>
+                <span> <button (click)="moveDown(task.id)">v</button> </span>
+
+            </div>
+        </ng-container>
     </div>
-    </div>
+
+</main>
 

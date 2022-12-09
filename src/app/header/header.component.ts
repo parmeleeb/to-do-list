@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,4 +7,18 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  @Output() updateVisibilityEvent = new EventEmitter<any>();
+
+  showBoth() {
+    this.updateVisibilityEvent.emit({toDoVisible:true, completedVisible:true});
+  }
+
+  showToDo() {
+    console.log(true, false);
+    this.updateVisibilityEvent.emit({toDoVisible:true, completedVisible:false});
+  }
+
+  showCompleted() {
+    this.updateVisibilityEvent.emit({toDoVisible:false, completedVisible:true});
+  }
 }

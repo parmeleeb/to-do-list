@@ -1,23 +1,38 @@
 
-    <!-- Section for adding Completed To Do Items -->
+<!-- Section for adding item to To Do List -->
 
-    <div class="list">
-        <div class="div-lable-styling">
-            <label for="To-Do"><!--Enter completed task:--></label>
-            <input type="text" name="completed" placeholder="Enter completed task..." />
-            <button class="add-button-styling" id="add" onclick="addCompletedItem('placeholder text')"> Add </button>
-        </div>
+<main class="list" *ngIf="completedVisible">
 
-        <!-- List of completed To Do List items -->
+    <h2>Completed</h2>
 
-        <div class="list-styling">
-        <table>
-            <thead>
-                <th>completed task list</th>
-                <th>Action pane</th>
-            </thead>
-            <tbody id="table-body"></tbody>
-        </table>
-        <p></p>
-        <div id="completed-list"></div>
+    <div class="div-lable-styling">
+        <label for="completed"></label>
+        <input [(ngModel)]="taskToAdd" type="text" name="completed" placeholder="Enter completed task..." />
+        <button (click)="addTask()" class="add-button-styling" id="add-completed"> Add </button>
     </div>
+
+    <!-- List of To Do Items -->
+
+    <div class="list-styling">
+
+        <ng-container id="completed-list" *ngFor="let task of completedList">
+            <div>
+
+                <span *ngIf="!task.toEdit">
+                    <span>{{ task.message }}</span>
+                    <span> <button (click)="toggleEdit(task.id)">edit</button> </span>
+                </span>
+
+                <span *ngIf="task.toEdit">
+                    <input [(ngModel)]="task.message"/>
+                    <span> <button (click)="toggleEdit(task.id)">Finish Editing</button> </span>
+                </span>
+
+                <span> <button (click)="completeTask(task.id)">comlpete</button> </span>
+                <span> <button (click)="deleteTask(task.id)">delete</button> </span>
+
+            </div>
+        </ng-container>
+    </div>
+
+</main>
