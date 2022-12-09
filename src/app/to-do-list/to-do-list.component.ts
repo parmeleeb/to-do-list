@@ -99,7 +99,7 @@ export class ToDoListComponent implements OnChanges{
     if (this.taskToIncomplete !== '') {
       this.taskToAdd = this.taskToIncomplete;
       this.addTask();
-      setTimeout(() => this.resetTaskEvent.emit(''), 100);
+      setTimeout(() => this.resetTaskEvent.emit(''), 0);
     }
     console.log(changes);
   }

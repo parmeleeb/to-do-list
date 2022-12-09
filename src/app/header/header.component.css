@@ -1,0 +1,28 @@
+
+*{
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+}
+
+h1{
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    background-color: antiquewhite;
+}
+
+nav{
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    margin: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.nav-styling{
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color:chocolate;
+}

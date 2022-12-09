@@ -3,41 +3,58 @@
 
 <main class="list" *ngIf="toDoVisible" >
 
-    <h2>To-Do</h2>
+    <div>
+        <h2>To-Do</h2>
 
-    <div class="div-lable-styling">
-        <label for="to-do"></label>
-        <input [(ngModel)]="taskToAdd" type="text" name="to-do" placeholder="Enter new task..." />
-        <label for="priority">Priority: </label>
-        <input [(ngModel)]="priority" type="checkbox" name="priority" />
-        <button (click)="addTask()" class="add-button-styling" id="add-to-do"> Add </button>
+        <div >
+           
+            <label for="to-do"></label>
+            <input class="textbox-styling" [(ngModel)]="taskToAdd" type="text" name="to-do" placeholder="Enter new task..." />
+           
+    
+       
+            <label for="priority">Priority: </label>
+            <input [(ngModel)]="priority" type="checkbox" name="priority" />
+            <button (click)="addTask()" class="add-button-styling" id="add-to-do"> Add </button>
+        
+        </div>
     </div>
 
     <!-- List of To Do Items -->
 
     <div class="list-styling">
+        <table cellspacing="0">
+            <thead >
+                <tr>
+                    <th class="table-styling">To-do Task</th>
+                    <th class="table-styling">Action Pane</th>
+                </tr>
+            </thead>
 
-        <ng-container id="to-do-list" *ngFor="let task of toDoList">
-            <div>
+            <tbody>
+                <ng-container id="to-do-list" *ngFor="let task of toDoList">
+                    <tr>
+                        <td class="table-styling">{{ task.message}}</td>
+                        <td class="table-styling">
+                        <span *ngIf="!task.toEdit">
+                            <span> <button (click)="toggleEdit(task.id)">edit</button> </span>
+                        </span>
 
-                <span *ngIf="!task.toEdit">
-                    <span>{{ task.message }}</span>
-                    <span> <button (click)="toggleEdit(task.id)">edit</button> </span>
-                </span>
+                        <span *ngIf="task.toEdit">
+                            <input [(ngModel)]="task.message"/>
+                            <span> <button (click)="toggleEdit(task.id)">Finish Editing</button> </span>
+                        </span>
 
-                <span *ngIf="task.toEdit">
-                    <input [(ngModel)]="task.message"/>
-                    <span> <button (click)="toggleEdit(task.id)">Finish Editing</button> </span>
-                </span>
-
-                <span> <button (click)="completeTask(task.id)">comlpete</button> </span>
-                <span> <button (click)="deleteTask(task.id)">delete</button> </span>
-                <span> <button (click)="moveToTop(task.id)">To Top</button> </span>
-                <span> <button (click)="moveUp(task.id)">^</button> </span>
-                <span> <button (click)="moveDown(task.id)">v</button> </span>
-
-            </div>
-        </ng-container>
+                        <span> <button (click)="completeTask(task.id)">comlpete</button> </span>
+                        <span> <button (click)="deleteTask(task.id)">delete</button> </span>
+                        <span> <button (click)="moveToTop(task.id)">To Top</button> </span>
+                        <span> <button (click)="moveUp(task.id)">^</button> </span>
+                        <span> <button (click)="moveDown(task.id)">v</button> </span>
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
     </div>
 
 </main>
