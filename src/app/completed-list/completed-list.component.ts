@@ -10,7 +10,7 @@ export class CompletedListComponent {
 
   @Input() completedVisible: boolean = true;
 
-  currentId: number = 3;
+  currentId: number = -3;
 
   completedList: any = [
     {
@@ -19,12 +19,12 @@ export class CompletedListComponent {
       toEdit: false
     },
     {
-      id: 1,
+      id: -1,
       message: 'This is the second, I guess...',
       toEdit: false
     },
     {
-      id: 2,
+      id: -2,
       message: "Hello Edwin I hope you're having a great day!",
       toEdit: false
     }
@@ -41,7 +41,7 @@ export class CompletedListComponent {
       this.completedList.push(newTask);
     this.taskToAdd = '';
     this.priority = false;
-    this.currentId++;
+    this.currentId--;
   }
 
   toggleEdit(taskId: number) {
