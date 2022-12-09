@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { Task } from '../models/task';
 
 @Component({
@@ -6,9 +6,12 @@ import { Task } from '../models/task';
   templateUrl: './to-do-list.component.html',
   styleUrls: ['./to-do-list.component.css']
 })
-export class ToDoListComponent {
+export class ToDoListComponent implements OnChanges{
 
   @Input() toDoVisible: boolean = true;
+  @Input() taskToIncomplete: string = '';
+  @Output() taskCompleteEvent = new EventEmitter<string>();
+  @Output() resetTaskEvent = new EventEmitter<string>();
 
   currentId: number = 3;
 
@@ -57,7 +60,11 @@ export class ToDoListComponent {
   }
 
   completeTask(taskId:number) {
-    //write code to call other list add function
+    let taskToComplete = '';
+    for (let task of this.toDoList) {
+      if(taskId === task.id) taskToComplete = task.message;
+    }
+    this.taskCompleteEvent.emit(taskToComplete);
     this.deleteTask(taskId);
   }
 
@@ -86,5 +93,14 @@ export class ToDoListComponent {
         break;
       }
     }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.taskToIncomplete !== '') {
+      this.taskToAdd = this.taskToIncomplete;
+      this.addTask();
+      setTimeout(() => this.resetTaskEvent.emit(''), 100);
+    }
+    console.log(changes);
   }
 }

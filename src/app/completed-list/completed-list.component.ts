@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { Task } from '../models/task';
 
 @Component({
@@ -6,9 +6,13 @@ import { Task } from '../models/task';
   templateUrl: './completed-list.component.html',
   styleUrls: ['./completed-list.component.css']
 })
-export class CompletedListComponent {
+
+export class CompletedListComponent implements OnChanges{
 
   @Input() completedVisible: boolean = true;
+  @Input() taskToComplete: string = '';
+  @Output() taskIncompleteEvent = new EventEmitter<string>();
+  @Output() resetTaskEvent = new EventEmitter<string>();
 
   currentId: number = -3;
 
@@ -57,8 +61,21 @@ export class CompletedListComponent {
   }
 
   completeTask(taskId:number) {
-    //write code to call other list add function
+    let taskToIncomplete = '';
+    for (let task of this.completedList) {
+      if(taskId === task.id) taskToIncomplete = task.message;
+    }
+    this.taskIncompleteEvent.emit(taskToIncomplete);
     this.deleteTask(taskId);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.taskToComplete !== '') {
+      this.taskToAdd = this.taskToComplete;
+      this.addTask();
+      setTimeout(() => this.resetTaskEvent.emit(''), 0);
+    }
+    console.log(changes);
   }
 }
 
