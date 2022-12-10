@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ɵisListLikeIterable } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { Task } from '../models/task';
 
 @Component({
@@ -11,7 +11,6 @@ export class ToDoListComponent implements OnChanges{
   @Input() toDoVisible: boolean = true;
   @Input() taskToIncomplete: string = '';
   @Output() taskCompleteEvent = new EventEmitter<string>();
-  @Output() resetTaskEvent = new EventEmitter<string>();
 
   currentId: number = 3;
 
@@ -65,6 +64,7 @@ export class ToDoListComponent implements OnChanges{
       if(taskId === task.id) taskToComplete = task.message;
     }
     this.taskCompleteEvent.emit(taskToComplete);
+    setTimeout(() => this.taskCompleteEvent.emit(''), 0);
     this.deleteTask(taskId);
   }
 
@@ -101,7 +101,6 @@ export class ToDoListComponent implements OnChanges{
     if (this.taskToIncomplete !== '') {
       this.taskToAdd = this.taskToIncomplete;
       this.addTask();
-      setTimeout(() => this.resetTaskEvent.emit(''), 0);
     }
     console.log(changes);
   }
