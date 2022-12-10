@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ɵisListLikeIterable } from '@angular/core';
 import { Task } from '../models/task';
 
 @Component({
@@ -80,7 +80,8 @@ export class ToDoListComponent implements OnChanges{
   moveUp(taskId:number) {
     for (let index in this.toDoList) {
       if (taskId === this.toDoList[index].id) {
-        this.toDoList.splice(Number(index)-1, 0, ...this.toDoList.splice(index, 1));
+        if(index !== '0')
+          this.toDoList.splice(Number(index)-1, 0, ...this.toDoList.splice(index, 1));
         break;
       }
     }
@@ -89,7 +90,8 @@ export class ToDoListComponent implements OnChanges{
   moveDown(taskId:number) {
     for (let index in this.toDoList) {
       if (taskId === this.toDoList[index].id) {
-        this.toDoList.splice(Number(index)+1, 0, ...this.toDoList.splice(index, 1));
+        if(Number(index) !== this.toDoList.length-1)
+          this.toDoList.splice(Number(index)+1, 0, ...this.toDoList.splice(index, 1));
         break;
       }
     }

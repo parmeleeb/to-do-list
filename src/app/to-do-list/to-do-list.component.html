@@ -4,14 +4,13 @@
 <main class="list" *ngIf="toDoVisible" >
 
     <div>
+
         <h2>To-Do</h2>
 
         <div >
            
             <label for="to-do"></label>
             <input class="textbox-styling" [(ngModel)]="taskToAdd" type="text" name="to-do" placeholder="Enter new task..." />
-           
-    
        
             <label for="priority">Priority: </label>
             <input [(ngModel)]="priority" type="checkbox" name="priority" />
@@ -34,16 +33,20 @@
             <tbody>
                 <ng-container id="to-do-list" *ngFor="let task of toDoList">
                     <tr>
-                        <td class="table-styling">{{ task.message}}</td>
-                        <td class="table-styling">
-                        <span *ngIf="!task.toEdit">
-                            <span> <button (click)="toggleEdit(task.id)">edit</button> </span>
-                        </span>
-
-                        <span *ngIf="task.toEdit">
+                        <td *ngIf="!task.toEdit" class="table-styling">{{ task.message }} 
+                        </td>
+                        <td *ngIf="task.toEdit">
                             <input [(ngModel)]="task.message"/>
-                            <span> <button (click)="toggleEdit(task.id)">Finish Editing</button> </span>
-                        </span>
+                        </td>
+                        <td class="table-styling tr-alignment">
+                      
+                            <span *ngIf="!task.toEdit"> 
+                                <button (click)="toggleEdit(task.id)">edit</button> 
+                            </span>
+
+                            <span *ngIf="task.toEdit">
+                                <span> <button (click)="toggleEdit(task.id)">Finish Editing</button> </span>
+                            </span>
 
                         <span> <button (click)="completeTask(task.id)">comlpete</button> </span>
                         <span> <button (click)="deleteTask(task.id)">delete</button> </span>
