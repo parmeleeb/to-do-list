@@ -12,7 +12,6 @@ export class CompletedListComponent implements OnChanges{
   @Input() completedVisible: boolean = true;
   @Input() taskToComplete: string = '';
   @Output() taskIncompleteEvent = new EventEmitter<string>();
-  @Output() resetTaskEvent = new EventEmitter<string>();
 
   currentId: number = -3;
 
@@ -66,6 +65,7 @@ export class CompletedListComponent implements OnChanges{
       if(taskId === task.id) taskToIncomplete = task.message;
     }
     this.taskIncompleteEvent.emit(taskToIncomplete);
+    setTimeout(() => this.taskIncompleteEvent.emit(''), 0);
     this.deleteTask(taskId);
   }
 
@@ -73,7 +73,6 @@ export class CompletedListComponent implements OnChanges{
     if (this.taskToComplete !== '') {
       this.taskToAdd = this.taskToComplete;
       this.addTask();
-      setTimeout(() => this.resetTaskEvent.emit(''), 0);
     }
     console.log(changes);
   }

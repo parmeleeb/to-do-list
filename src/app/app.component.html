@@ -2,14 +2,12 @@
 
 <app-to-do-list [toDoVisible]="toDoVisible"
                 [taskToIncomplete]="taskToIncomplete"
-                (taskCompleteEvent)="completeTask($event)"
-                (resetTaskEvent)="incompleteTask('')">
+                (taskCompleteEvent)="completeTask($event)">
                 </app-to-do-list>
 
 <app-completed-list [completedVisible]="completedVisible"
                     [taskToComplete]="taskToComplete"
-                    (taskIncompleteEvent)="incompleteTask($event)"
-                    (resetTaskEvent)="completeTask('')"></app-completed-list>
+                    (taskIncompleteEvent)="incompleteTask($event)"></app-completed-list>
 
 <router-outlet></router-outlet>
 
