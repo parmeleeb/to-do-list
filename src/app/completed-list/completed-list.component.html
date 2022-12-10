@@ -4,36 +4,50 @@
 
 <main class="list" *ngIf="completedVisible">
 
-    <h2>Completed</h2>
+    <h2>Completed Task</h2>
 
     <div class="div-lable-styling">
         <label for="completed"></label>
-        <input [(ngModel)]="taskToAdd" type="text" name="completed" placeholder="Enter completed task..." />
+        <input class="textbox-styling" [(ngModel)]="taskToAdd" type="text" name="completed" placeholder="Enter completed task..." />
         <button (click)="addTask()" class="add-button-styling" id="add-completed"> Add </button>
     </div>
 
     <!-- List of To Do Items -->
 
     <div class="list-styling">
+        <table cellspacing="0">
+            <thead >
+                <tr>
+                    <th class="table-styling">To-do Task</th>
+                    <th class="table-styling">Action Pane</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container id="completed-list" *ngFor="let task of completedList">
+                    <tr>
+                        <td *ngIf="!task.toEdit" class="table-styling">{{ task.message }} 
+                        </td> 
+                        <td *ngIf="task.toEdit">
+                            <input [(ngModel)]="task.message"/>
+                        </td>
+                        <td class="table-styling tr-alignment">
 
-        <ng-container id="completed-list" *ngFor="let task of completedList">
-            <div>
+                            <span *ngIf="!task.toEdit"> 
+                                <button (click)="toggleEdit(task.id)">edit</button> 
+                            </span>
 
-                <span *ngIf="!task.toEdit">
-                    <span>{{ task.message }}</span>
-                    <span> <button (click)="toggleEdit(task.id)">edit</button> </span>
-                </span>
-
-                <span *ngIf="task.toEdit">
-                    <input [(ngModel)]="task.message"/>
-                    <span> <button (click)="toggleEdit(task.id)">Finish Editing</button> </span>
-                </span>
-
-                <span> <button (click)="completeTask(task.id)">incomlpete</button> </span>
-                <span> <button (click)="deleteTask(task.id)">delete</button> </span>
-
-            </div>
-        </ng-container>
+                            <span *ngIf="task.toEdit">
+                                <span> <button (click)="toggleEdit(task.id)">Finish Editing</button> </span>
+                            </span>
+                            
+                            
+                            <span> <button (click)="completeTask(task.id)">incomlpete</button> </span>
+                            <span> <button (click)="deleteTask(task.id)">delete</button> </span>
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
     </div>
 
 </main>
