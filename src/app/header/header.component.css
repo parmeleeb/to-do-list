@@ -9,7 +9,8 @@ h1{
     text-align: center;
     display: flex;
     justify-content: space-around;
-    background-color: antiquewhite;
+    background-color: #778899;
+    color: white;
 }
 
 nav{
@@ -24,5 +25,7 @@ nav{
 .nav-styling{
     padding: 5px 10px;
     border-radius: 5px;
-    background-color:chocolate;
+    background-color:#15051a;
+    color: white;
+    font-size: large;
 }

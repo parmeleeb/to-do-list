@@ -1,15 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    
 <aside *ngIf="true"></aside>
 
 <!-- Section for adding item to To Do List -->
 
 <main class="list" *ngIf="completedVisible">
 
-    <h2>Completed Task</h2>
+    <div style="text-align: center;"><h2>Completed Task</h2></div>
 
-    <div class="div-lable-styling">
+    <div class="div-styling">
         <label for="completed"></label>
         <input class="textbox-styling" [(ngModel)]="taskToAdd" type="text" name="completed" placeholder="Enter completed task..." />
-        <button (click)="addTask()" class="add-button-styling" id="add-completed"> Add </button>
+        <span id="tooltip">
+            <span id="tooltipText">Add to list</span> 
+        <button (click)="addTask()" class="add-button-styling padding" id="add-completed"> Add </button>
+    </span>
     </div>
 
     <!-- List of To Do Items -->
@@ -19,7 +33,7 @@
             <thead >
                 <tr>
                     <th class="table-styling">To-do Task</th>
-                    <th class="table-styling">Action Pane</th>
+                    <th id="tdwidth" class="table-styling">Action Pane</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,19 +44,19 @@
                         <td *ngIf="task.toEdit">
                             <input [(ngModel)]="task.message"/>
                         </td>
-                        <td class="table-styling tr-alignment">
+                        <td id="tdwidth" class="table-styling tr-alignment">
 
                             <span *ngIf="!task.toEdit"> 
-                                <button (click)="toggleEdit(task.id)">edit</button> 
+                                <button onclick="" class="material-icons" (click)="toggleEdit(task.id)"> edit</button> 
                             </span>
 
                             <span *ngIf="task.toEdit">
-                                <span> <button (click)="toggleEdit(task.id)">Finish Editing</button> </span>
+                                <span> <button class="material-icons" (click)="toggleEdit(task.id)">add_task</button> </span>
                             </span>
                             
                             
-                            <span> <button (click)="completeTask(task.id)">incomlpete</button> </span>
-                            <span> <button (click)="deleteTask(task.id)">delete</button> </span>
+                            <span> <button class="material-icons" (click)="completeTask(task.id)">cancel</button> </span>
+                            <span> <button class="material-icons" (click)="deleteTask(task.id)">delete_forever</button> </span>
                         </td>
                     </tr>
                 </ng-container>
@@ -51,3 +65,5 @@
     </div>
 
 </main>
+</body>
+</html>

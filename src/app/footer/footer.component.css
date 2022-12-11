@@ -1,0 +1,12 @@
+*{
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+}
+footer{
+    background-color: #778899;
+    text-align: center;
+    padding: 5px;
+    font-style: italic;
+    color: white;
+}

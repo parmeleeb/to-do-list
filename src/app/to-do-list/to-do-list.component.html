@@ -1,20 +1,35 @@
-
-<!-- Section for adding item to To Do List -->
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+ 
+    <!-- Section for adding item to To Do List -->
 <main class="list" *ngIf="toDoVisible" >
+
+    <div style="text-align: center"><h2>To-Do</h2></div>
 
     <div>
 
-        <h2>To-Do</h2>
-
-        <div >
+        <div class="div-styling">
            
             <label for="to-do"></label>
             <input class="textbox-styling" [(ngModel)]="taskToAdd" type="text" name="to-do" placeholder="Enter new task..." />
        
-            <label for="priority">Priority: </label>
+            <label class="padding" for="priority">Priority: </label>
             <input [(ngModel)]="priority" type="checkbox" name="priority" />
-            <button (click)="addTask()" class="add-button-styling" id="add-to-do"> Add </button>
+            
+            
+            <span id="tooltip">
+                <span id="tooltipText">Add to list</span>  
+            <button id="tooltip" (click)="addTask()" class="add-button-styling padding" id="add-to-do">  Add </button>
+            </span>
+       
         
         </div>
     </div>
@@ -26,7 +41,7 @@
             <thead >
                 <tr>
                     <th class="table-styling">To-do Task</th>
-                    <th class="table-styling">Action Pane</th>
+                    <th id="tdwidth" class="table-styling">Action Pane</th>
                 </tr>
             </thead>
 
@@ -38,21 +53,22 @@
                         <td *ngIf="task.toEdit">
                             <input [(ngModel)]="task.message"/>
                         </td>
-                        <td class="table-styling tr-alignment">
+                        <td id="tdwidth" class="table-styling tr-alignment">
                       
-                            <span *ngIf="!task.toEdit"> 
-                                <button (click)="toggleEdit(task.id)">edit</button> 
+                            <span *ngIf="!task.toEdit">  
+                                <button class="material-icons" (click)="toggleEdit(task.id)">edit</button> 
                             </span>
 
                             <span *ngIf="task.toEdit">
-                                <span> <button (click)="toggleEdit(task.id)">Finish Editing</button> </span>
+                                <span> <button class="material-icons" (click)="toggleEdit(task.id)">add_task</button> </span>
                             </span>
 
-                        <span> <button (click)="completeTask(task.id)">comlpete</button> </span>
-                        <span> <button (click)="deleteTask(task.id)">delete</button> </span>
-                        <span> <button (click)="moveToTop(task.id)">To Top</button> </span>
-                        <span> <button (click)="moveUp(task.id)">^</button> </span>
-                        <span> <button (click)="moveDown(task.id)">v</button> </span>
+                        <span> <button class="material-icons" (click)="completeTask(task.id)">done</button> </span>
+                        <span> <button class="material-icons" (click)="deleteTask(task.id)">delete</button> </span>
+                         
+                        <span> <button class="material-icons" (click)="moveUp(task.id)">move_up</button> </span>
+                        <span> <button class="material-icons" (click)="moveDown(task.id)">move_down</button></span>
+                        
                         </td>
                     </tr>
                 </ng-container>
@@ -61,4 +77,5 @@
     </div>
 
 </main>
-
+</body>
+</html>
