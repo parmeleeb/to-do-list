@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ɵisListLikeIterable } from '@angular/core';
+import { Validator } from '@angular/forms';
 import { Task } from '../models/task';
 
 @Component({
@@ -35,6 +36,8 @@ export class ToDoListComponent implements OnChanges{
 
   taskToAdd: string = '';
   priority: boolean = false;
+ 
+  
 
   addTask() {
     const newTask = new Task(this.currentId, this.taskToAdd);

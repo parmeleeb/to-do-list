@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
-    
+   
 <aside *ngIf="true"></aside>
 
 <!-- Section for adding item to To Do List -->
 
 <main class="list" *ngIf="completedVisible">
-
+<div id="displayStyle">
     <div style="text-align: center;"><h2>Completed Task</h2></div>
 
     <div class="div-styling">
@@ -42,7 +42,7 @@
                         <td *ngIf="!task.toEdit" class="table-styling">{{ task.message }} 
                         </td> 
                         <td *ngIf="task.toEdit">
-                            <input [(ngModel)]="task.message"/>
+                            <input [(ngModel)]="task.message" class="editing-styling"/>
                         </td>
                         <td id="tdwidth" class="table-styling tr-alignment">
 
@@ -63,6 +63,7 @@
             </tbody>
         </table>
     </div>
+</div>
 
 </main>
 </body>

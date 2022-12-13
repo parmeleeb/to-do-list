@@ -11,7 +11,7 @@
  
     <!-- Section for adding item to To Do List -->
 <main class="list" *ngIf="toDoVisible" >
-
+<div id="displayStyle">
     <div style="text-align: center"><h2>To-Do</h2></div>
 
     <div>
@@ -40,20 +40,20 @@
         <table cellspacing="0">
             <thead >
                 <tr>
-                    <th class="table-styling">To-do Task</th>
-                    <th id="tdwidth" class="table-styling">Action Pane</th>
+                    <th>To-do Task</th>
+                    <th id="tdwidth">Action Pane</th>
                 </tr>
             </thead>
 
             <tbody>
                 <ng-container id="to-do-list" *ngFor="let task of toDoList">
                     <tr>
-                        <td *ngIf="!task.toEdit" class="table-styling">{{ task.message }} 
+                        <td *ngIf="!task.toEdit">{{ task.message }} 
                         </td>
                         <td *ngIf="task.toEdit">
-                            <input [(ngModel)]="task.message"/>
+                            <input [(ngModel)]="task.message" class="editing-styling"/>
                         </td>
-                        <td id="tdwidth" class="table-styling tr-alignment">
+                        <td id="tdwidth" class="tr-alignment">
                       
                             <span *ngIf="!task.toEdit">  
                                 <button class="material-icons" (click)="toggleEdit(task.id)">edit</button> 
@@ -75,6 +75,7 @@
             </tbody>
         </table>
     </div>
+</div>
 
 </main>
 </body>
