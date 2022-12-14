@@ -9,7 +9,12 @@ h1{
     text-align: center;
     display: flex;
     justify-content: space-around;
-    background-color: antiquewhite;
+    background-color: #23483C;
+    color: white;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+
 }
 
 nav{
@@ -23,6 +28,13 @@ nav{
 
 .nav-styling{
     padding: 5px 10px;
+    margin-top: 50px;
     border-radius: 5px;
-    background-color:chocolate;
+    background-color:#23483C;
+    color: white;
+    font-size: large;
+}
+
+.display{
+    display: grid;
 }

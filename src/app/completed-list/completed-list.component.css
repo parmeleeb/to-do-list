@@ -1,73 +1,19 @@
-*{
-    margin: 0px;
-    border: 0px;
-    padding: 0px;
-}
 
-h2{
-    text-align: center;
-}
-
-input{
-    font-size: 15px;
-    padding: 4px;
-}
-
-
-/*.label-styling{
-    border: 1px solid;
-    font-size: 18px;
-    padding: 4px;
-    border: 1px solid;
-    border-radius: 5px;
-    margin-right: 5px;
-    vertical-align:middle;
-}
-*/
 .textbox-styling{
-    width: 80%;
-    border: 1px solid;
+    height: 20px;
+    width: 90%;
 }
 
-button{
-    padding: 4px 10px;
-    border-radius: 50px;
-    border: 1px solid;   
-}
-
-table{
-    margin-top: 30px;
-    width: 100%;
-    border: 1px solid;
+body{
+    padding-left: 5px;
+    padding-right: 5px;
+    max-width: 1500px;
+    min-width: 600px;
+    margin: 0px auto;
     
 }
 
-.table-styling{
-    border-bottom: 1px solid;
+#tdwidth{
+    width: 135px;
 }
 
-th{
-    border-bottom: 1px solid;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 4px;
-}
-
-tr{
-    border: 1px solid black;
-}
-
-.tr-alignment{
-    text-align: end;
-}
-
-td{
-    padding: 4px;
-    border-bottom: 1px solid;
-    width: 50%;
-}
-
-
-span{
-    padding-left: 4px;
-}

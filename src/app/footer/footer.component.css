@@ -1,0 +1,15 @@
+*{
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+}
+footer{
+    background-color: #23483C;
+    text-align: center;
+    padding: 5px;
+    font-style: italic;
+    color: white;
+    bottom: 0px;
+    position: fixed;
+    width: 100%;
+}
