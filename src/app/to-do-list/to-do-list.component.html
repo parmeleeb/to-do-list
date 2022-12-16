@@ -36,7 +36,7 @@
                           <tr>
                               <td *ngIf="!task.toEdit">{{ task.message }}</td>
                               <td *ngIf="task.toEdit">
-                                  <input [(ngModel)]="taskToEdit" class="editing-styling"/>
+                                  <input [(ngModel)]="taskToEdit" id="edit-input" class="editing-styling"/>
                               </td>
                               <td id="tdwidth" class="tr-alignment">
 

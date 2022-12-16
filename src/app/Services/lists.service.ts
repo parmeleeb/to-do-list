@@ -196,6 +196,14 @@ export class ListsService {
     this.completedListBehave.next(this.completedList);
   }
 
+  editTodo(taskId:number, taskMessage:string):void {
+    for(let task of this.todoList) {
+      if(task.id == taskId)
+        task.message = taskMessage;
+    }
+    this.todoListBehave.next(this.todoList);
+  }
+
   moveUp(taskId:number):void {
     for (let index in this.todoList) {
       if (taskId === this.todoList[index].id) {

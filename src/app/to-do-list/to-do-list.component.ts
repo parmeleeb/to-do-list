@@ -68,11 +68,13 @@ export class ToDoListComponent {
         task.toEdit = true;
     }
     this.taskToEdit = taskMessage;
+
   }
 
   confirmEdit(taskId: number) {
     for(let task of this.todoList) task.toEdit = false;
-    this.listsService.editCompleted(taskId, this.taskToEdit);
+    this.listsService.editTodo(taskId, this.taskToEdit);
+    this.taskToEdit = '';
   }
 
 }
