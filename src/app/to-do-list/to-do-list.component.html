@@ -39,11 +39,11 @@
                               <td id="tdwidth" class="tr-alignment">
 
                                   <span *ngIf="!task.toEdit">
-                                      <button class="material-icons" (click)="toggleEdit(task.id)">edit</button>
+                                      <button class="material-icons">edit</button>
                                   </span>
 
                                   <span *ngIf="task.toEdit">
-                                      <span> <button class="material-icons" (click)="toggleEdit(task.id)">add_task</button> </span>
+                                      <span> <button class="material-icons">add_task</button> </span>
                                   </span>
 
                                   <span> <button class="material-icons" (click)="completeTask(task.id)">done</button> </span>

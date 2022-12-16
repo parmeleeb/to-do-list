@@ -35,7 +35,7 @@
                                 <button *ngIf="!task.toEdit" onclick="" class="material-icons" (click)="editTask(task.message, task.id)">edit</button>
                                 <ng-container *ngIf="task.toEdit">
                                     <button class="material-icons" (click)="confirmEdit(task.id)">add_task</button>
-                                    <button class="material-icons" (click)="discardEdit()">clear</button>
+                                    <button class="material-icons" (click)="discardEdit()">highlight_off</button>
                                 </ng-container>
                                 <ng-container *ngIf="!task.toEdit">
                                     <span> <button class="material-icons" (click)="incompleteTask(task.id)">redo</button> </span>
