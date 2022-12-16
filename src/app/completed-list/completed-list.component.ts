@@ -11,6 +11,12 @@ export class CompletedListComponent{
 
   completedList: any = [];
 
+  completeListVisible: boolean = true;
+
+  toggleVisible(){
+    this.completeListVisible = !this.completeListVisible;
+  }
+
   constructor(private listsService:ListsService) {
     listsService.completedListObserve.subscribe(data => {
       this.completedList = data;

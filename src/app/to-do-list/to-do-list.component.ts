@@ -12,70 +12,22 @@ import { ListsService } from '../Services/lists.service';
 export class ToDoListComponent {
 
   constructor(private listsService: ListsService) {
+    listsService.todoListObserve.subscribe(data => {this.toDoList=data})
 
   }
 
-  @Input() toDoVisible: boolean = true;
+  toDoVisible: boolean = true;
+  
+  toggleVisible() {
+    this.toDoVisible = !this.toDoVisible;
+  }
 
 
-
-  toDoList: any = [
-    {
-      
-      id: 0,
-      message: 'Declutter or Deep Clean One Room',
-      toEdit: false
-    },
-    {
-      id: 1,
-      message: 'Go through my emails',
-      toEdit: false
-    },
-    {
-      id: 2,
-      message: "Review previous month’s income and expenses",
-      toEdit: false
-    },
-    {
-      id: 3,
-      message: "Pay bills",
-      toEdit: false
-    },
-    {
-      id: 4,
-      message: "Backup important computer files to a USB drive",
-      toEdit: false
-    },
-    {
-      id: 5,
-      message: "Get prescriptions refilled",
-      toEdit: false
-    },
-    {
-      id: 6,
-      message: "Clean out the fridge and pantry",
-      toEdit: false
-    },
-    {
-      id: 7,
-      message: "Switch out contact lenses",
-      toEdit: false
-    },
-    {
-      id: 8,
-      message: "Organize my iphone photo library",
-      toEdit: false
-    },
-    {
-      id: 9,
-      message: "Chech mail box",
-      toEdit: false
-    }
-  ]
+  toDoList: any = []
 
   taskToAdd: string = '';
   priority: boolean = false;
-
+  taskToEdit: string =''
 
 
   addTask() {
@@ -91,7 +43,7 @@ export class ToDoListComponent {
   }
 
   completeTask(taskId:number) {
-    this.listsService.incompleteTask(taskId)
+    this.listsService.completeTask(taskId)
 
   }
 
@@ -102,6 +54,22 @@ export class ToDoListComponent {
 
   moveDown(taskId:number) {
     this.listsService.moveDown(taskId)
+  }
+
+  editTask(taskMessage: string, taskId: number) {
+    for(let  task of this.toDoList) {
+      if(task.toEdit && task.id != taskId)
+        task.toEdit = false;
+      else if(task.id == taskId)
+        task.toEdit = true;
+    }
+    this.taskToEdit = taskMessage;
+  }
+
+  confirmEdit(taskId: number) {
+    for(let task of this.toDoList) task.toEdit = false;
+    this.listsService.editCompleted(taskId, this.taskToEdit);
+    
   }
 
 }
