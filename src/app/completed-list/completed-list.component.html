@@ -1,9 +1,10 @@
 
 <!-- Section for adding item to To Do List -->
 
-<main class="list">
+<div class="list-head"> <button class="navbutton2" (click)="toggleVisible()"> Completed Task </button></div>
+
+<main class="list" *ngIf="completeListVisible">
     <div id="displayStyle">
-        <div style="text-align: center;"><h2>Completed Task</h2></div>
 
         <div class="div-styling">
             <label for="completed"></label>

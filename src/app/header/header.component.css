@@ -17,6 +17,8 @@ h1{
 
 }
 
+
+
 nav{
     text-align: center;
     display: flex;
@@ -26,20 +28,21 @@ nav{
     font-weight: bold;
 }
 
-/* .nav-styling{
+ .nav-styling{
     padding: 5px 10px;
     margin-top: 50px;
     border-radius: 5px;
     background-color:#23483C;
     color: white;
     font-size: large;
-} */
+} 
 
 .display{
     display: grid;
 }
 
 .navbutton {
+  
     appearance: none;
     background-color: #FFFFFF;
     border-radius: 40em;
@@ -77,6 +80,7 @@ nav{
   
   @media (min-width: 768px) {
     .navbutton {
+      margin-top: 50px;
       font-size: 1.5rem;
       padding: .75rem 2rem;
     }
@@ -99,6 +103,8 @@ nav{
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  margin-top: 50px;
+  font-size: 18px;
 }
 
 .navbutton2:before {
