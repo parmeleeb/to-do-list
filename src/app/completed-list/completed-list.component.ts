@@ -41,6 +41,11 @@ export class CompletedListComponent{
     this.taskToEdit = '';
   }
 
+  discardEdit() {
+    for(let task of this.completedList) task.toEdit = false;
+    this.taskToEdit = '';
+  }
+
   deleteTask(taskId:number) {
     this.listsService.deleteCompletedTask(taskId);
   }
