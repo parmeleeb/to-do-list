@@ -13,6 +13,8 @@ export class CompletedListComponent implements OnChanges{
   @Input() taskToComplete: string = '';
   @Output() taskIncompleteEvent = new EventEmitter<string>();
 
+
+
   currentId: number = -3;
 
   completedList: any = [
