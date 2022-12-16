@@ -32,7 +32,6 @@ export class CompletedListComponent{
   constructor(private listsService:ListsService) {
     listsService.completedListObserve.subscribe(data => {
       this.completedList = data;
-      console.log(data);
     })
   }
 
@@ -61,7 +60,6 @@ export class CompletedListComponent{
   }
 
   deleteTask(taskId:number) {
-    console.log('delete task id: ' + taskId);
     this.listsService.deleteCompletedTask(taskId);
   }
 

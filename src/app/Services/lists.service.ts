@@ -94,11 +94,9 @@ export class ListsService {
     for(let index in this.completedList) {
       if(this.completedList[index].id == taskId) {
         taskIndex = Number(index);
-        console.log('task to delete: ' + this.completedList[index]);
         break;
       }
     }
-    console.log('service list: '+this.completedList);
     this.completedList.splice(taskIndex, 1);
     this.completedListBehave.next(this.completedList);
   }
