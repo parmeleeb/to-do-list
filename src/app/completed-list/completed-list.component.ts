@@ -9,25 +9,7 @@ import { ListsService } from '../Services/lists.service';
 
 export class CompletedListComponent{
 
-  @Input() completedVisible: boolean = true;
-
-  completedList: any = [
-    {
-      id: 0,
-      message: 'This is the first task in my To-Do list!',
-      toEdit: false
-    },
-    {
-      id: -1,
-      message: 'This is the second, I guess...',
-      toEdit: false
-    },
-    {
-      id: -2,
-      message: "Hello Edwin I hope you're having a great day!",
-      toEdit: false
-    }
-  ]
+  completedList: any = [];
 
   constructor(private listsService:ListsService) {
     listsService.completedListObserve.subscribe(data => {

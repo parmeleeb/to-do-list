@@ -1,8 +1,8 @@
 <app-header (updateVisibilityEvent)="updateListVisibility($event)"></app-header>
 
-<app-to-do-list [toDoVisible]="toDoVisible"></app-to-do-list>
+<app-to-do-list *ngIf="toDoVisible"></app-to-do-list>
 
-<app-completed-list [completedVisible]="completedVisible"></app-completed-list>
+<app-completed-list *ngIf="completedVisible"></app-completed-list>
 
 
 
