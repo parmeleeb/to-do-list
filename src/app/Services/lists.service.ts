@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Task } from '../models/task';
 
 @Injectable({
@@ -10,34 +11,57 @@ export class ListsService {
 
   currentId:number = 1;
 
-  toDoList: Task[] = [];
-  completedList: Task[] = [];
-  favoriteList: Task[] = [];
+  private todoList: Task[] = [];
+  private todoListBehave = new BehaviorSubject<Task[]>([    {
+    id: 0,
+    message: 'This is the first task in my To-Do list!',
+    toEdit: false
+  },
+  {
+    id: 1,
+    message: 'This is the second, I guess...',
+    toEdit: false
+  },
+  {
+    id: 2,
+    message: "Hello Edwin I hope you're having a great day!",
+    toEdit: false
+  }]);
+  todoListObserve = this.todoListBehave.asObservable();
+
+  private completedList: Task[] = [new Task(0,'helo')];
+  private completedListBehave = new BehaviorSubject<Task[]>([new Task(0,'helo')]);
+  completedListObserve = this.completedListBehave.asObservable();
+
+  private favoriteList: Task[] = [];
+  private favoriteListBehave = new BehaviorSubject<Task[]>([]);
+  favoriteListObserve = this.favoriteListBehave.asObservable();
+
 
   addTodoTask(taskToAdd:string, priority:boolean): void {
     if(priority)
-      this.toDoList.unshift(new Task(this.currentId++, taskToAdd));
+      this.todoList.unshift(new Task(this.currentId++, taskToAdd));
     else
-      this.toDoList.push(new Task(this.currentId++, taskToAdd));
-
+      this.todoList.push(new Task(this.currentId++, taskToAdd));
+    this.todoListBehave.next(this.todoList);
   }
 
-  addCompletedTask(taskToAdd:string, priority:boolean): void {
-    if(priority)
-      this.completedList.unshift(new Task(this.currentId++, taskToAdd));
-    else
-      this.completedList.push(new Task(this.currentId++, taskToAdd));
+  addCompletedTask(taskToAdd:string): void {
+    this.completedList.push(new Task(this.currentId++, taskToAdd));
+    this.completedListBehave.next(this.completedList);
   }
 
-  completeTodoTask(taskId:number): void {
+  completeTask(taskId:number): void {
     let taskIndex = -1;
-    for(let index in this.toDoList) {
-      if(this.toDoList[index].id == taskId) {
+    for(let index in this.todoList) {
+      if(this.todoList[index].id == taskId) {
         taskIndex = Number(index);
         break;
       }
     }
-    this.completedList.push(...this.toDoList.splice(taskIndex, 1));
+    this.completedList.push(...this.todoList.splice(taskIndex, 1));
+    this.todoListBehave.next(this.todoList);
+    this.completedListBehave.next(this.completedList);
   }
 
   incompleteTask(taskId:number): void {
@@ -48,18 +72,21 @@ export class ListsService {
         break;
       }
     }
-    this.toDoList.push(...this.completedList.splice(taskIndex, 1));
+    this.todoList.push(...this.completedList.splice(taskIndex, 1));
+    this.todoListBehave.next(this.todoList);
+    this.completedListBehave.next(this.completedList);
   }
 
   deleteTodoTask(taskId:number): void {
     let taskIndex = -1;
-    for(let index in this.toDoList) {
-      if(this.toDoList[index].id == taskId) {
+    for(let index in this.todoList) {
+      if(this.todoList[index].id == taskId) {
         taskIndex = Number(index);
         break;
       }
     }
-    this.toDoList.splice(taskIndex, 1);
+    this.todoList.splice(taskIndex, 1);
+    this.todoListBehave.next(this.todoList);
   }
 
   deleteCompletedTask(taskId:number): void {
@@ -71,25 +98,36 @@ export class ListsService {
       }
     }
     this.completedList.splice(taskIndex, 1);
+    this.completedListBehave.next(this.completedList);
+  }
+
+  editCompleted(taskId:number, taskMessage:string):void {
+    for(let task of this.completedList) {
+      if(task.id == taskId)
+        task.message = taskMessage;
+    }
+    this.completedListBehave.next(this.completedList);
   }
 
   moveUp(taskId:number):void {
-    for (let index in this.toDoList) {
-      if (taskId === this.toDoList[index].id) {
+    for (let index in this.todoList) {
+      if (taskId === this.todoList[index].id) {
         if(index !== '0')
-          this.toDoList.splice(Number(index)-1, 0, ...this.toDoList.splice(Number(index), 1));
+          this.todoList.splice(Number(index)-1, 0, ...this.todoList.splice(Number(index), 1));
         break;
       }
     }
+    this.todoListBehave.next(this.todoList);
   }
 
   moveDown(taskId:number):void {
-    for (let index in this.toDoList) {
-      if (taskId === this.toDoList[index].id) {
-        if(Number(index) !== this.toDoList.length-1)
-          this.toDoList.splice(Number(index)+1, 0, ...this.toDoList.splice(Number(index), 1));
+    for (let index in this.todoList) {
+      if (taskId === this.todoList[index].id) {
+        if(Number(index) !== this.todoList.length-1)
+          this.todoList.splice(Number(index)+1, 0, ...this.todoList.splice(Number(index), 1));
         break;
       }
     }
+    this.todoListBehave.next(this.todoList);
   }
 }

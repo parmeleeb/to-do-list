@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { Task } from '../models/task';
+import { Component, Input } from '@angular/core';
 import { ListsService } from '../Services/lists.service';
 
 @Component({
@@ -8,87 +7,46 @@ import { ListsService } from '../Services/lists.service';
   styleUrls: ['./completed-list.component.css']
 })
 
-export class CompletedListComponent implements OnChanges{
+export class CompletedListComponent{
 
-  constructor(private listsService: ListsService) {}
+  completedList: any = [];
 
-  @Input() completedVisible: boolean = true;
-  
-
-  completedList: any = [
-    {
-      id: 0,
-      message: "Go to gym",
-      toEdit: false
-    },
-    {
-      id: -1,
-      message: "Conduct personal Hygiene",
-      toEdit: false
-    },
-    {
-      id: -2,
-      message: "Take breakfast ",
-      toEdit: false
-    },
-    {
-      id: -3,
-      message: "Drop the kids to school ",
-      toEdit: false
-    }
-  ]
-
-  taskToAdd: string = '';
-  priority: boolean = false;
-
-  addTask() {
-    this.listsService.addcompleteTask(this.taskToAdd);
-    this.completedList = [...this.listsService.completedList]
-    this.taskToAdd = '';
-    
-
-
-    const newTask = new Task(this.currentId, this.taskToAdd);
-    if(this.priority)
-      this.completedList.unshift(newTask);
-    else
-      this.completedList.push(newTask);
-    this.taskToAdd = '';
-    this.priority = false;
-    this.currentId--;
+  constructor(private listsService:ListsService) {
+    listsService.completedListObserve.subscribe(data => {
+      this.completedList = data;
+    })
   }
 
-  toggleEdit(taskId: number) {
-    for (let task of this.completedList) {
-      if(taskId === task.id) task.toEdit = !task.toEdit;
+  taskToAdd: string = '';
+  taskToEdit: string = '';
+
+  addTask() {
+    this.listsService.addCompletedTask(this.taskToAdd);
+    this.taskToAdd = '';
+  }
+
+  editTask(taskMessage: string, taskId: number) {
+    for(let  task of this.completedList) {
+      if(task.toEdit && task.id != taskId)
+        task.toEdit = false;
+      else if(task.id == taskId)
+        task.toEdit = true;
     }
+    this.taskToEdit = taskMessage;
+  }
+
+  confirmEdit(taskId: number) {
+    for(let task of this.completedList) task.toEdit = false;
+    this.listsService.editCompleted(taskId, this.taskToEdit);
+    this.taskToEdit = '';
   }
 
   deleteTask(taskId:number) {
-    this.listsService.deleteCompletedTask(taskId)
-    this.completedList = [...this.listsService.completedList]
-
-    for (let index in this.completedList) {
-      if (taskId === this.completedList[index].id) this.completedList.splice(index, 1);
-    }
+    this.listsService.deleteCompletedTask(taskId);
   }
 
-  completeTask(taskId:number) {
-    let taskToIncomplete = '';
-    for (let task of this.completedList) {
-      if(taskId === task.id) taskToIncomplete = task.message;
-    }
-    this.taskIncompleteEvent.emit(taskToIncomplete);
-    setTimeout(() => this.taskIncompleteEvent.emit(''), 0);
-    this.deleteTask(taskId);
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (this.taskToComplete !== '') {
-      this.taskToAdd = this.taskToComplete;
-      this.addTask();
-    }
-    console.log(changes);
+  incompleteTask(taskId:number) {
+    this.listsService.incompleteTask(taskId);
   }
 }
 

@@ -11,7 +11,9 @@ import { ListsService } from '../Services/lists.service';
 })
 export class ToDoListComponent {
 
-  constructor(private listsService: ListsService) {}
+  constructor(private listsService: ListsService) {
+
+  }
 
   @Input() toDoVisible: boolean = true;
 
@@ -78,61 +80,28 @@ export class ToDoListComponent {
 
   addTask() {
     this.listsService.addTodoTask(this.taskToAdd, this.priority);
-    this.toDoList = [...this.listsService.toDoList]
-
     this.taskToAdd = '';
     this.priority = false;
   }
 
-  toggleEdit(taskId: number) {
-    // this.listsService.toggleEdit(taskId)
-    this.toDoList = [...this.listsService.toDoList]
-
-    for (let task of this.toDoList) {
-      if(taskId === task.id) task.toEdit = !task.toEdit;
-    }
-  }
+  
 
   deleteTask(taskId:number) {
     this.listsService.deleteTodoTask(taskId)
-    this.toDoList = [...this.listsService.toDoList]
-
-    for (let index in this.toDoList) {
-      if (taskId === this.toDoList[index].id) this.toDoList.splice(index, 1);
-    }
   }
 
   completeTask(taskId:number) {
     this.listsService.incompleteTask(taskId)
-    this.toDoList = [...this.listsService.toDoList]
 
   }
 
 
   moveUp(taskId:number) {
     this.listsService.moveUp(taskId)
-    this.toDoList = [...this.listsService.toDoList]
-
-    for (let index in this.toDoList) {
-      if (taskId === this.toDoList[index].id) {
-        if(index !== '0')
-          this.toDoList.splice(Number(index)-1, 0, ...this.toDoList.splice(index, 1));
-        break;
-      }
-    }
   }
 
   moveDown(taskId:number) {
     this.listsService.moveDown(taskId)
-    this.toDoList = [...this.listsService.toDoList]
-
-    for (let index in this.toDoList) {
-      if (taskId === this.toDoList[index].id) {
-        if(Number(index) !== this.toDoList.length-1)
-          this.toDoList.splice(Number(index)+1, 0, ...this.toDoList.splice(index, 1));
-        break;
-      }
-    }
   }
 
 }
