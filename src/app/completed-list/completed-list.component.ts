@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { Task } from '../models/task';
+import { ListsService } from '../Services/lists.service';
 
 @Component({
   selector: 'app-completed-list',
@@ -9,28 +10,30 @@ import { Task } from '../models/task';
 
 export class CompletedListComponent implements OnChanges{
 
+  constructor(private listsService: ListsService) {}
+
   @Input() completedVisible: boolean = true;
-  @Input() taskToComplete: string = '';
-  @Output() taskIncompleteEvent = new EventEmitter<string>();
-
-
-
-  currentId: number = -3;
+  
 
   completedList: any = [
     {
       id: 0,
-      message: 'This is the first task in my To-Do list!',
+      message: "Go to gym",
       toEdit: false
     },
     {
       id: -1,
-      message: 'This is the second, I guess...',
+      message: "Conduct personal Hygiene",
       toEdit: false
     },
     {
       id: -2,
-      message: "Hello Edwin I hope you're having a great day!",
+      message: "Take breakfast ",
+      toEdit: false
+    },
+    {
+      id: -3,
+      message: "Drop the kids to school ",
       toEdit: false
     }
   ]
@@ -39,6 +42,12 @@ export class CompletedListComponent implements OnChanges{
   priority: boolean = false;
 
   addTask() {
+    this.listsService.addcompleteTask(this.taskToAdd);
+    this.completedList = [...this.listsService.completedList]
+    this.taskToAdd = '';
+    
+
+
     const newTask = new Task(this.currentId, this.taskToAdd);
     if(this.priority)
       this.completedList.unshift(newTask);
@@ -56,6 +65,9 @@ export class CompletedListComponent implements OnChanges{
   }
 
   deleteTask(taskId:number) {
+    this.listsService.deleteCompletedTask(taskId)
+    this.completedList = [...this.listsService.completedList]
+
     for (let index in this.completedList) {
       if (taskId === this.completedList[index].id) this.completedList.splice(index, 1);
     }

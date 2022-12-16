@@ -51,7 +51,7 @@ export class ListsService {
     this.toDoList.push(...this.completedList.splice(taskIndex, 1));
   }
 
-  deleteToDoTask(taskId:number): void {
+  deleteTodoTask(taskId:number): void {
     let taskIndex = -1;
     for(let index in this.toDoList) {
       if(this.toDoList[index].id == taskId) {
