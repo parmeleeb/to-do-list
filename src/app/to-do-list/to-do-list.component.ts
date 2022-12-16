@@ -12,18 +12,18 @@ import { ListsService } from '../Services/lists.service';
 export class ToDoListComponent {
 
   constructor(private listsService: ListsService) {
-    listsService.todoListObserve.subscribe(data => {this.toDoList=data})
+    listsService.todoListObserve.subscribe(data => {this.todoList=data})
 
   }
 
   toDoVisible: boolean = true;
-  
+
   toggleVisible() {
     this.toDoVisible = !this.toDoVisible;
   }
 
 
-  toDoList: any = []
+  todoList: any = []
 
   taskToAdd: string = '';
   priority: boolean = false;
@@ -36,7 +36,7 @@ export class ToDoListComponent {
     this.priority = false;
   }
 
-  
+
 
   deleteTask(taskId:number) {
     this.listsService.deleteTodoTask(taskId)
@@ -47,6 +47,10 @@ export class ToDoListComponent {
 
   }
 
+  discardEdit() {
+    for(let task of this.todoList) task.toEdit = false;
+    this.taskToEdit = '';
+  }
 
   moveUp(taskId:number) {
     this.listsService.moveUp(taskId)
@@ -57,7 +61,7 @@ export class ToDoListComponent {
   }
 
   editTask(taskMessage: string, taskId: number) {
-    for(let  task of this.toDoList) {
+    for(let  task of this.todoList) {
       if(task.toEdit && task.id != taskId)
         task.toEdit = false;
       else if(task.id == taskId)
@@ -67,9 +71,8 @@ export class ToDoListComponent {
   }
 
   confirmEdit(taskId: number) {
-    for(let task of this.toDoList) task.toEdit = false;
+    for(let task of this.todoList) task.toEdit = false;
     this.listsService.editCompleted(taskId, this.taskToEdit);
-    
   }
 
 }

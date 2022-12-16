@@ -9,10 +9,10 @@ export class ListsService {
 
   constructor() { }
 
-  currentId:number = 1;
+  currentId:number = 100;
 
   private todoList: Task[] = [{
-      
+
     id: 0,
     message: 'Declutter or Deep Clean One Room',
     toEdit: false
@@ -62,9 +62,9 @@ export class ListsService {
     message: "Chech mail box",
     toEdit: false
   }];
-  private todoListBehave = new BehaviorSubject<Task[]>([    
+  private todoListBehave = new BehaviorSubject<Task[]>([
     {
-      
+
       id: 0,
       message: 'Declutter or Deep Clean One Room',
       toEdit: false
