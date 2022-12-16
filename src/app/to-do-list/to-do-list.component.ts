@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
 import { Validator } from '@angular/forms';
 import { Task } from '../models/task';
 
+
 @Component({
   selector: 'app-to-do-list',
   templateUrl: './to-do-list.component.html',

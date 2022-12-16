@@ -1,0 +1,46 @@
+<main class="list" *ngIf="toDoVisible" >
+    <div id="displayStyle">
+        <div style="text-align: center"><h2>My Favorite List</h2></div>
+    
+        <!-- List of To Do Items -->
+    
+        <div class="list-styling">
+            <table cellspacing="0">
+                <thead >
+                    <tr>
+                        <th>To-do Task</th>
+                        <th id="tdwidth">Action Pane</th>
+                    </tr>
+                </thead>
+    
+                <tbody>
+                    <ng-container id="to-do-list" *ngFor="let task of toDoList">
+                        <tr>
+                            <td *ngIf="!task.toEdit">{{ task.message }} 
+                            </td>
+                            <td *ngIf="task.toEdit">
+                                <input [(ngModel)]="task.message" class="editing-styling"/>
+                            </td>
+                            <td id="tdwidth" class="tr-alignment">
+                          
+                                <span *ngIf="!task.toEdit">  
+                                    <button class="material-icons" (click)="toggleEdit(task.id)">edit</button> 
+                                </span>
+    
+                                <span *ngIf="task.toEdit">
+                                    <span> <button class="material-icons" (click)="toggleEdit(task.id)">add_task</button> </span>
+                                </span>
+    
+                            <span> <button class="material-icons" (click)="deleteTask(task.id)">delete</button> </span>
+                             
+                           
+                            
+                            </td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    </main>
