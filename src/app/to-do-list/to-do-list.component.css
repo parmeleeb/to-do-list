@@ -1,5 +1,5 @@
 
-body{
+main{
     padding-left: 5px;
     padding-right: 5px;
     max-width: 1500px;
@@ -7,22 +7,26 @@ body{
     margin: 0px auto;
 }
 
+.list-head {
+  text-align: center;
+}
+
 /*#span{
     border-bottom: 3px dotted red;
 }
 #toolTip{
-    position: absolute;  
+    position: absolute;
     border: none;
     background-color: aquamarine;
     width: 80px;
-    
+
     left: 10px;
     top: 170px;
 }
 .span{
-    border: 1px solid; 
+    border: 1px solid;
     padding: 0px;
-    margin: 0px; 
+    margin: 0px;
     margin-left: 10px;
     width: 40px;
 }
