@@ -8,6 +8,8 @@ import { ToDoListComponent } from './to-do-list/to-do-list.component';
 import { CompletedListComponent } from './completed-list/completed-list.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { MyFavoriteListComponent } from './my-favorite-list/my-favorite-list.component';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import { FooterComponent } from './footer/footer.component';
     ToDoListComponent,
     CompletedListComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    MyFavoriteListComponent
   ],
   imports: [
     BrowserModule,

@@ -1,70 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-</head>
-<body>
-   
-<aside *ngIf="true"></aside>
 
 <!-- Section for adding item to To Do List -->
 
-<main class="list" *ngIf="completedVisible">
-<div id="displayStyle">
-    <div style="text-align: center;"><h2>Completed Task</h2></div>
+<div class="list-head"> <button class="navbutton2" (click)="toggleVisible()"> Completed Task </button></div>
 
-    <div class="div-styling">
-        <label for="completed"></label>
-        <input class="textbox-styling" [(ngModel)]="taskToAdd" type="text" name="completed" placeholder="Enter completed task..." />
-        <span id="tooltip">
-            <span id="tooltipText">Add to list</span> 
-        <button (click)="addTask()" class="add-button-styling padding" id="add-completed"> Add </button>
-    </span>
-    </div>
+<main class="list" *ngIf="completeListVisible">
+    <div id="displayStyle">
 
-    <!-- List of To Do Items -->
+        <div class="div-styling">
+            <label for="completed"></label>
+            <input class="textbox-styling" [(ngModel)]="taskToAdd" type="text" name="completed" placeholder="Enter completed task..." />
+            <span id="tooltip">
+                <span id="tooltipText">Add to list</span>
+                <button (click)="addTask()" class="add-button-styling padding" id="add-completed"> Add </button>
+            </span>
+        </div>
 
-    <div class="list-styling">
-        <table cellspacing="0">
-            <thead >
-                <tr>
-                    <th class="table-styling">To-do Task</th>
-                    <th id="tdwidth" class="table-styling">Action Pane</th>
-                </tr>
-            </thead>
-            <tbody>
-                <ng-container id="completed-list" *ngFor="let task of completedList">
+        <!-- List of To Do Items -->
+
+        <div class="list-styling">
+            <table cellspacing="0">
+                <thead >
                     <tr>
-                        <td *ngIf="!task.toEdit" class="table-styling">{{ task.message }} 
-                        </td> 
-                        <td *ngIf="task.toEdit">
-                            <input [(ngModel)]="task.message" class="editing-styling"/>
-                        </td>
-                        <td id="tdwidth" class="table-styling tr-alignment">
-
-                            <span *ngIf="!task.toEdit"> 
-                                <button onclick="" class="material-icons" (click)="toggleEdit(task.id)"> edit</button> 
-                            </span>
-
-                            <span *ngIf="task.toEdit">
-                                <span> <button class="material-icons" (click)="toggleEdit(task.id)">add_task</button> </span>
-                            </span>
-                            
-                            
-                            <span> <button class="material-icons" (click)="completeTask(task.id)">cancel</button> </span>
-                            <span> <button class="material-icons" (click)="deleteTask(task.id)">delete_forever</button> </span>
-                        </td>
+                        <th class="table-styling">To-do Task</th>
+                        <th id="tdwidth" class="table-styling">Action Pane</th>
                     </tr>
-                </ng-container>
-            </tbody>
-        </table>
-    </div>
-</div>
+                </thead>
+                <tbody>
+                    <ng-container id="completed-list" *ngFor="let task of completedList">
+                        <tr>
+                            <td *ngIf="!task.toEdit" class="table-styling">{{ task.message }}</td>
+                            <td *ngIf="task.toEdit">
+                                <input [(ngModel)]="taskToEdit" class="editing-styling"/>
+                            </td>
+                            <td id="tdwidth" class="table-styling tr-alignment">
 
+                                <ng-container *ngIf="task.toEdit">
+                                    <button class="material-icons" (click)="confirmEdit(task.id)">add_task</button>
+                                    <button class="material-icons" (click)="discardEdit()">highlight_off</button>
+                                </ng-container>
+
+                                <ng-container *ngIf="!task.toEdit">
+                                    <button class="material-icons" (click)="editTask(task.message, task.id)">edit</button>
+                                    <button class="material-icons" (click)="incompleteTask(task.id)">redo</button>
+                                    <button class="material-icons" (click)="deleteTask(task.id)">delete</button>
+                                </ng-container>
+
+                            </td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </main>
-</body>
-</html>

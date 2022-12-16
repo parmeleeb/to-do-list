@@ -1,28 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
 
-<app-header (updateVisibilityEvent)="updateListVisibility($event)"></app-header>
+<app-header></app-header>
 
-<app-to-do-list [toDoVisible]="toDoVisible"
-                [taskToIncomplete]="taskToIncomplete"
-                (taskCompleteEvent)="completeTask($event)">
-                </app-to-do-list>
+<app-to-do-list></app-to-do-list>
 
-<app-completed-list [completedVisible]="completedVisible"
-                    [taskToComplete]="taskToComplete"
-                    (taskIncompleteEvent)="incompleteTask($event)"></app-completed-list>
+<app-completed-list></app-completed-list>
+
+<!-- <app-my-favorite-list></app-my-favorite-list> -->
 
 <router-outlet></router-outlet>
 
 <app-footer></app-footer>
-
-</body>
-</html>
