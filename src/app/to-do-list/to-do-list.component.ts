@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { Validator } from '@angular/forms';
 import { Task } from '../models/task';
+import { ListsService } from '../Services/lists.service';
 
 
 @Component({
@@ -9,6 +10,8 @@ import { Task } from '../models/task';
   styleUrls: ['./to-do-list.component.css']
 })
 export class ToDoListComponent implements OnChanges{
+
+  constructor(private listsService: ListsService) {}
 
   @Input() toDoVisible: boolean = true;
   @Input() taskToIncomplete: string = '';
