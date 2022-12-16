@@ -11,7 +11,9 @@ import { ListsService } from '../Services/lists.service';
 })
 export class ToDoListComponent implements OnChanges{
 
-  constructor(private listsService: ListsService) {}
+  constructor(private listsService: ListsService) {
+
+  }
 
   @Input() toDoVisible: boolean = true;
   @Input() taskToIncomplete: string = '';
