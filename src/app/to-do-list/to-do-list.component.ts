@@ -9,32 +9,66 @@ import { ListsService } from '../Services/lists.service';
   templateUrl: './to-do-list.component.html',
   styleUrls: ['./to-do-list.component.css']
 })
-export class ToDoListComponent implements OnChanges{
+export class ToDoListComponent {
 
   constructor(private listsService: ListsService) {
 
   }
 
   @Input() toDoVisible: boolean = true;
-  @Input() taskToIncomplete: string = '';
-  @Output() taskCompleteEvent = new EventEmitter<string>();
 
-  currentId: number = 3;
+
 
   toDoList: any = [
     {
+      
       id: 0,
-      message: 'This is the first task in my To-Do list!',
+      message: 'Declutter or Deep Clean One Room',
       toEdit: false
     },
     {
       id: 1,
-      message: 'This is the second, I guess...',
+      message: 'Go through my emails',
       toEdit: false
     },
     {
       id: 2,
-      message: "Hello Edwin I hope you're having a great day!",
+      message: "Review previous month’s income and expenses",
+      toEdit: false
+    },
+    {
+      id: 3,
+      message: "Pay bills",
+      toEdit: false
+    },
+    {
+      id: 4,
+      message: "Backup important computer files to a USB drive",
+      toEdit: false
+    },
+    {
+      id: 5,
+      message: "Get prescriptions refilled",
+      toEdit: false
+    },
+    {
+      id: 6,
+      message: "Clean out the fridge and pantry",
+      toEdit: false
+    },
+    {
+      id: 7,
+      message: "Switch out contact lenses",
+      toEdit: false
+    },
+    {
+      id: 8,
+      message: "Organize my iphone photo library",
+      toEdit: false
+    },
+    {
+      id: 9,
+      message: "Chech mail box",
       toEdit: false
     }
   ]
@@ -45,72 +79,29 @@ export class ToDoListComponent implements OnChanges{
 
 
   addTask() {
-    const newTask = new Task(this.currentId, this.taskToAdd);
-    if(this.priority)
-      this.toDoList.unshift(newTask);
-    else
-      this.toDoList.push(newTask);
+    this.listsService.addTodoTask(this.taskToAdd, this.priority);
     this.taskToAdd = '';
     this.priority = false;
-    this.currentId++;
   }
 
-  toggleEdit(taskId: number) {
-    for (let task of this.toDoList) {
-      if(taskId === task.id) task.toEdit = !task.toEdit;
-    }
-  }
+  
 
   deleteTask(taskId:number) {
-    for (let index in this.toDoList) {
-      if (taskId === this.toDoList[index].id) this.toDoList.splice(index, 1);
-    }
+    this.listsService.deleteTodoTask(taskId)
   }
 
   completeTask(taskId:number) {
-    let taskToComplete = '';
-    for (let task of this.toDoList) {
-      if(taskId === task.id) taskToComplete = task.message;
-    }
-    this.taskCompleteEvent.emit(taskToComplete);
-    setTimeout(() => this.taskCompleteEvent.emit(''), 0);
-    this.deleteTask(taskId);
+    this.listsService.incompleteTask(taskId)
+
   }
 
-  moveToTop(taskId:number) {
-    for (let index in this.toDoList) {
-      if (taskId === this.toDoList[index].id) {
-        this.toDoList.unshift(...this.toDoList.splice(index, 1));
-        break;
-      }
-    }
-  }
 
   moveUp(taskId:number) {
-    for (let index in this.toDoList) {
-      if (taskId === this.toDoList[index].id) {
-        if(index !== '0')
-          this.toDoList.splice(Number(index)-1, 0, ...this.toDoList.splice(index, 1));
-        break;
-      }
-    }
+    this.listsService.moveUp(taskId)
   }
 
   moveDown(taskId:number) {
-    for (let index in this.toDoList) {
-      if (taskId === this.toDoList[index].id) {
-        if(Number(index) !== this.toDoList.length-1)
-          this.toDoList.splice(Number(index)+1, 0, ...this.toDoList.splice(index, 1));
-        break;
-      }
-    }
+    this.listsService.moveDown(taskId)
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (this.taskToIncomplete !== '') {
-      this.taskToAdd = this.taskToIncomplete;
-      this.addTask();
-    }
-    console.log(changes);
-  }
 }
