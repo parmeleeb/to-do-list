@@ -4,9 +4,8 @@
     border: 0px;
 }
 
-body{
-    background-color: 	#E7F3EF;
-
+body{ 
+    background-image: url('assets/images/bgc.jpg');
 }
 
 h2{
@@ -25,6 +24,7 @@ input{
     padding: 4px;
     font-size: large;
     background-color: #d8d8d8;
+    vertical-align: middle;
 }
 
 .textbox-styling{
@@ -69,6 +69,7 @@ table{
     width: 100%;
     border: 1px solid;
     background-color: #bebebe;
+    background-image: url('assets/images/table.webp');
 }
 
 .editing-styling{
@@ -124,26 +125,27 @@ span{
 #tooltip{
     position:absolute;
     cursor: pointer;
-
     padding: 4px;
     font-size: 18px;
     font-weight: bold;
-    width: 30px;
+    width: 1px;
+    vertical-align: middle;
+    margin-left: 15px;
 }
 
 #tooltipText{
-    position: absolute;
+    position:absolute;
     left: 95%;
     top: 0px;
-    transform: translateX(-50%);
-    border: 1px solid;
-    color: #000;
+    transform: translateX(-45%);
+    color: white;
     white-space: nowrap;
     padding: 4px 10px;
     border-radius: 5px;
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.5s ease ;
+    background-color: #353535;
 }
 
 #tooltipText::before{
@@ -153,7 +155,7 @@ span{
     top: 100%;
     transform: translateX(-50%);
     border: 10px solid;
-    border-color: #000 rgba(214, 203, 203, 0) #0000 #0000;
+    border-color: #353535 rgba(214, 203, 203, 0) #0000 #0000;
 
 }
 
@@ -161,10 +163,27 @@ span{
     top: -130%;
     visibility: visible;
     opacity: 1;
+    
 }
 
-.padding{
-    margin-left: 10px;
+.add-button-style{
+    vertical-align: middle;
+    margin-left: -10px;
+    margin-top: -6px;
+    
+
+}
+
+.priority-Styling{
+    
+    margin-left: 15px;
+    width: 34px;
+    padding: 4px;
+    padding-right: 0px;
+    padding-left: 8px;
+    vertical-align: middle;
+    border-radius: 10px;
+    align-items: center;
 }
 
 .pad{
