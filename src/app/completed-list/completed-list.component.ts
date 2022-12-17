@@ -9,13 +9,20 @@ import { ListsService } from '../Services/lists.service';
 
 export class CompletedListComponent{
 
-  completedList: any = [];
+
+ /**
+  *
+  * VARIABLE DECLARATIONS
+  *
+  */
 
   completeListVisible: boolean = true;
 
-  toggleVisible(){
-    this.completeListVisible = !this.completeListVisible;
-  }
+  completedList: any = [];
+
+  taskToAdd: string = '';
+
+  taskToEdit: string = '';
 
   constructor(private listsService:ListsService) {
     listsService.completedListObserve.subscribe(data => {
@@ -23,13 +30,35 @@ export class CompletedListComponent{
     })
   }
 
-  taskToAdd: string = '';
-  taskToEdit: string = '';
+
+ /**
+  *
+  * PAGE-WIDE FUNCTION(S)
+  *
+  */
+
+  toggleVisible(){
+    this.completeListVisible = !this.completeListVisible;
+  }
+
+
+ /**
+  *
+  * NEW TASK FUNCTION(S)
+  *
+  */
 
   addTask() {
     this.listsService.addCompletedTask(this.taskToAdd);
     this.taskToAdd = '';
   }
+
+
+ /**
+  *
+  * ACTION PANE FUNCTIONS
+  *
+  */
 
   editTask(taskMessage: string, taskId: number) {
     for(let  task of this.completedList) {
@@ -52,12 +81,12 @@ export class CompletedListComponent{
     this.taskToEdit = '';
   }
 
-  deleteTask(taskId:number) {
-    this.listsService.deleteCompletedTask(taskId);
-  }
-
   incompleteTask(taskId:number) {
     this.listsService.incompleteTask(taskId);
+  }
+
+  deleteTask(taskId:number) {
+    this.listsService.deleteCompletedTask(taskId);
   }
 }
 

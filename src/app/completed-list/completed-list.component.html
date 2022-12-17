@@ -1,55 +1,57 @@
 
 <!-- Section for adding item to To Do List -->
 
-<div class="list-head"> <button class="navbutton2" (click)="toggleVisible()"> Completed Task </button></div>
+<div class="list-head"> <button (click)="toggleVisible()" class="navbutton2"> Completed Task </button></div>
 
-<main class="list" *ngIf="completeListVisible">
+<main *ngIf="completeListVisible" class="list">
     <div id="displayStyle">
 
         <div class="div-styling">
+
             <label for="completed"></label>
-            <input class="textbox-styling" [(ngModel)]="taskToAdd" type="text" name="completed" placeholder="Enter completed task..." />
+            <input [(ngModel)]="taskToAdd" type="text" name="completed" placeholder="Enter completed task..." class="textbox-styling" />
+
             <span id="tooltip">
                 <span id="tooltipText">Add to list</span>
-                <button (click)="addTask()" class="material-icons add-button-style" id="add-completed"> post_add </button>
+                <button (click)="addTask()" id="add-completed" class="material-icons add-button-style"> post_add </button>
             </span>
+
         </div>
 
         <!-- List of To Do Items -->
 
-        <div class="list-styling">
-            <table cellspacing="0">
-                <thead >
+        <table class="list-styling" cellspacing="0">
+
+            <thead >
+                <tr>
+                    <th class="table-styling">To-do Task</th>
+                    <th id="tdwidth" class="table-styling">Action Pane</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <ng-container *ngFor="let task of completedList" id="completed-list">
                     <tr>
-                        <th class="table-styling">To-do Task</th>
-                        <th id="tdwidth" class="table-styling">Action Pane</th>
+                        <td *ngIf="!task.toEdit" class="table-styling">{{ task.message }}</td>
+                        <td *ngIf="task.toEdit"> <input [(ngModel)]="taskToEdit" class="editing-styling"/> </td>
+                        <td id="tdwidth" class="table-styling tr-alignment">
+
+                            <ng-container *ngIf="task.toEdit">
+                                <button (click)="confirmEdit(task.id)" class="material-icons">add_task</button>
+                                <button (click)="discardEdit()" class="material-icons">highlight_off</button>
+                            </ng-container>
+
+                            <ng-container *ngIf="!task.toEdit">
+                                <button (click)="editTask(task.message, task.id)" class="material-icons">edit</button>
+                                <button (click)="incompleteTask(task.id)" class="material-icons">redo</button>
+                                <button (click)="deleteTask(task.id)" class="material-icons">delete</button>
+                            </ng-container>
+
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    <ng-container id="completed-list" *ngFor="let task of completedList">
-                        <tr>
-                            <td *ngIf="!task.toEdit" class="table-styling">{{ task.message }}</td>
-                            <td *ngIf="task.toEdit">
-                                <input [(ngModel)]="taskToEdit" class="editing-styling"/>
-                            </td>
-                            <td id="tdwidth" class="table-styling tr-alignment">
+                </ng-container>
+            </tbody>
 
-                                <ng-container *ngIf="task.toEdit">
-                                    <button class="material-icons" (click)="confirmEdit(task.id)">add_task</button>
-                                    <button class="material-icons" (click)="discardEdit()">highlight_off</button>
-                                </ng-container>
-
-                                <ng-container *ngIf="!task.toEdit">
-                                    <button class="material-icons" (click)="editTask(task.message, task.id)">edit</button>
-                                    <button class="material-icons" (click)="incompleteTask(task.id)">redo</button>
-                                    <button class="material-icons" (click)="deleteTask(task.id)">delete</button>
-                                </ng-container>
-
-                            </td>
-                        </tr>
-                    </ng-container>
-                </tbody>
-            </table>
-        </div>
+        </table>
     </div>
 </main>

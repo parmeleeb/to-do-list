@@ -1,66 +1,60 @@
 
     <!-- Section for adding item to To Do List -->
 
-<div class="list-head"> <button class="navbutton2" (click)="toggleVisible()"> To-Do </button></div>
+<div class="list-head"> <button (click)="toggleVisible()" class="navbutton2"> To-Do </button> </div>
 
-<main class="list" *ngIf="toDoVisible" >
+<main *ngIf="toDoVisible" class="list">
     <div id="displayStyle">
 
         <div class="div-styling">
             <label for="to-do"></label>
-            <input class="textbox-styling" [(ngModel)]="taskToAdd" type="text" name="to-do" placeholder="Enter new task..." />
+            <input [(ngModel)]="taskToAdd" type="text" name="to-do" placeholder="Enter new task..." class="textbox-styling" />
 
-            <button id="priority-pressed" class="priority-Styling material-icons" *ngIf="priority" (click)="togglePriority()"> whatshot </button>
-            <button class="priority-Styling material-icons" *ngIf="!priority" (click)="togglePriority()"> whatshot </button>
+            <button *ngIf="priority" (click)="togglePriority()" id="priority-pressed" class="priority-Styling material-icons"> whatshot </button>
+            <button *ngIf="!priority" (click)="togglePriority()" class="priority-Styling material-icons"> whatshot </button>
 
             <span id="tooltip">
                 <span id="tooltipText">Add to list</span>
-                <button id="tooltip" (click)="addTask()" class="material-icons add-button-style" id="add-to-do"> post_add </button>
+                <button (click)="addTask()" id="tooltip add-to-do" class="material-icons add-button-style"> post_add </button>
             </span>
         </div>
 
         <!-- List of To Do Items -->
 
-        <div class="list-styling">
-            <table cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>To-do Task</th>
-                        <th id="tdwidth">Action Pane</th>
-                    </tr>
-                </thead>
+        <table class="list-styling" cellspacing="0">
 
-                  <tbody>
-                      <ng-container id="to-do-list" *ngFor="let task of todoList">
-                          <tr>
-                              <td *ngIf="!task.toEdit">{{ task.message }}</td>
-                              <td *ngIf="task.toEdit">
-                                  <input [(ngModel)]="taskToEdit" id="edit-input" class="editing-styling"/>
-                              </td>
-                              <td id="tdwidth" class="tr-alignment">
+            <thead>
+                <tr>
+                    <th>To-do Task</th>
+                    <th id="tdwidth">Action Pane</th>
+                </tr>
+            </thead>
 
-                                  <ng-container *ngIf="!task.toEdit">
-                                      <button class="material-icons" (click)="editTask(task.message, task.id)"> edit</button>
-                                      <button class="material-icons" (click)="completeTask(task.id)">done</button>
-                                      <button class="material-icons" (click)="deleteTask(task.id)">delete</button>
-                                      <button class="material-icons" (click)="moveUp(task.id)">move_up</button>
-                                      <button class="material-icons" (click)="moveDown(task.id)">move_down</button>
-                                  </ng-container>
+              <tbody>
+                  <ng-container *ngFor="let task of todoList; let i = index" id="to-do-list">
+                      <tr>
+                          <td *ngIf="!task.toEdit">{{ task.message }}</td>
+                          <td *ngIf="task.toEdit"> <input [(ngModel)]="taskToEdit" id="edit-input" class="editing-styling"/> </td>
+                          <td id="tdwidth" class="tr-alignment">
 
-                                  <ng-container *ngIf="task.toEdit">
-                                      <button class="material-icons" (click)="confirmEdit(task.id)">add_task</button>
-                                      <button class="material-icons" (click)="discardEdit()">highlight_off</button>
-                                  </ng-container>
+                              <ng-container *ngIf="!task.toEdit">
+                                  <button (click)="editTask(task.message, task.id)" class="material-icons"> edit</button>
+                                  <button (click)="completeTask(task.id)" class="material-icons">done</button>
+                                  <button (click)="deleteTask(task.id)" class="material-icons">delete</button>
+                                  <button *ngIf="i != 0" (click)="moveUp(task.id)" class="material-icons">move_up</button>
+                                  <button *ngIf="i != todoList.length-1" (click)="moveDown(task.id)" class="material-icons">move_down</button>
+                              </ng-container>
 
+                              <ng-container *ngIf="task.toEdit">
+                                  <button (click)="confirmEdit(task.id)" class="material-icons">add_task</button>
+                                  <button (click)="discardEdit()" class="material-icons">highlight_off</button>
+                              </ng-container>
 
+                          </td>
+                      </tr>
+                  </ng-container>
+              </tbody>
 
-
-
-                              </td>
-                          </tr>
-                      </ng-container>
-                  </tbody>
-            </table>
-        </div>
+        </table>
     </div>
 </main>
