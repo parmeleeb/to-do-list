@@ -36,8 +36,6 @@ export class ToDoListComponent {
     this.priority = false;
   }
 
-
-
   deleteTask(taskId:number) {
     this.listsService.deleteTodoTask(taskId)
   }
@@ -77,4 +75,7 @@ export class ToDoListComponent {
     this.taskToEdit = '';
   }
 
+  togglePriority() {
+    this.priority = !this.priority;
+  }
 }

@@ -11,6 +11,10 @@ main{
   text-align: center;
 }
 
+#priority-pressed {
+  background-color: red;
+}
+
 /*#span{
     border-bottom: 3px dotted red;
 }

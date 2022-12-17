@@ -10,8 +10,8 @@
             <label for="to-do"></label>
             <input class="textbox-styling" [(ngModel)]="taskToAdd" type="text" name="to-do" placeholder="Enter new task..." />
 
-            <label class="priority-Styling material-icons" for="priority"> whatshot </label>
-            <input [(ngModel)]="priority" type="checkbox" name="priority" />
+            <button id="priority-pressed" class="priority-Styling material-icons" *ngIf="priority" (click)="togglePriority()"> whatshot </button>
+            <button class="priority-Styling material-icons" *ngIf="!priority" (click)="togglePriority()"> whatshot </button>
 
             <span id="tooltip">
                 <span id="tooltipText">Add to list</span>
