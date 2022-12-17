@@ -1,11 +1,48 @@
+/* ---------------------------------------------------- */
+/*                    style by TAG                      */
+/* ---------------------------------------------------- */
+/*          Organized by SCOPE / page ORDER             */
+/* ---------------------------------------------------- */
+
 *{
     margin: 0px;
-    padding: 0px;
     border: 0px;
+    padding: 0px;
 }
 
-body{ 
+body{
     background-image: url('assets/images/bgc.jpg');
+}
+
+footer{
+  background-color: #353535;
+  text-align: center;
+  padding: 5px;
+  font-style: italic;
+  color: white;
+  bottom: 0px;
+  position: fixed;
+  width: 100%;
+}
+
+main{
+  padding-left: 5px;
+  padding-right: 5px;
+  max-width: 1500px;
+  min-width: 600px;
+  margin: 0px auto;
+}
+
+h1{
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    background-color: #3f3f3f;
+    color: white;
+    position: fixed;
+    float: top;
+    top: 0px;
+    width: 100%;
 }
 
 h2{
@@ -19,16 +56,41 @@ h2{
     display: inline-block;
 }
 
+table{
+    margin-top: 10px;
+    margin-bottom: 40px;
+    width: 100%;
+    border: 1px solid;
+    background-color: #bebebe;
+    background-image: url('assets/images/table.webp');
+}
+
+th{
+    border-bottom: 1px solid;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 5px;
+    background-color: #636363;
+}
+
+tr{
+    border: 1px solid black;
+}
+
+td{
+    padding: 2px;
+    border-bottom: 1px solid;
+    text-align: center;
+    font-size: large;
+    height: 80px;
+}
+
 input{
     font-size: 15px;
     padding: 4px;
     font-size: large;
     background-color: #d8d8d8;
     vertical-align: middle;
-}
-
-.textbox-styling{
-    width: 80%;
 }
 
 button{
@@ -49,11 +111,43 @@ button:active{
     box-shadow: 0px 1px 0px 0px rgb(53, 53, 53);
 }
 
+span{
+    padding-left: 3px;
+}
+
+
+/* ---------------------------------------------------- */
+/*                  style by CLASS                      */
+/* ---------------------------------------------------- */
+/*               Organized ALPHABETICAL                 */
+/* ---------------------------------------------------- */
+
+.add-button-style{
+    vertical-align: middle;
+    margin-left: -10px;
+    margin-top: -6px;
+}
+
 .add-button-styling{
     padding: 4px 10px;
     background-color: #353535;
     color: white;
     border: 0px;
+}
+
+.editing-styling{
+    width: 100%;
+}
+
+.div-styling{
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 10px;
+    background-color: #646464;
+}
+
+.list-head {
+  text-align: center;
 }
 
 .material-icons{
@@ -63,59 +157,111 @@ button:active{
     width: 40px;
 }
 
-table{
-    margin-top: 10px;
-    margin-bottom: 40px;
+.navbutton2 {
+    padding: 0.6em 2em;
+    border: none;
+    outline: none;
+    color: rgb(255, 255, 255);
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin-top: 50px;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+.navbutton2:before {
+    content: "";
+    background: linear-gradient(
+        45deg,
+        #ff0000,
+        #ff7300,
+        #fffb00,
+        #48ff00,
+        #00ffd5,
+        #002bff,
+        #7a00ff,
+        #ff00c8,
+        #ff0000
+    );
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing-button-85 20s linear infinite;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 10px;
+}
+
+.navbutton2:after {
+    z-index: -1;
+    content: "";
+    position: absolute;
     width: 100%;
-    border: 1px solid;
-    background-color: #bebebe;
-    background-image: url('assets/images/table.webp');
+    height: 100%;
+    background: #222;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
 }
 
-.editing-styling{
-    width: 100%;
-
+/* this goes with the navbutton2 section */
+@keyframes glowing-button-85 {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
 }
 
-th{
-    border-bottom: 1px solid;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 5px;
-    background-color: #636363;
-
-
+.pad{
+    text-align: center;
 }
 
-tr{
-    border: 1px solid black;
+.priority-Styling{
+
+    margin-left: 15px;
+    width: 34px;
+    padding: 4px;
+    padding-right: 0px;
+    padding-left: 8px;
+    vertical-align: middle;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.textbox-styling{
+  height: 20px;
+  width: 80%;
 }
 
 .tr-alignment{
     text-align: end;
-
-}
-
-td{
-    padding: 2px;
-    border-bottom: 1px solid;
-    text-align: center;
-    font-size: large;
-    height: 80px;
 }
 
 
-span{
-    padding-left: 3px;
-}
+/* ---------------------------------------------------- */
+/*                    style by ID                       */
+/* ---------------------------------------------------- */
+/*               Organized ALPHABETICAL                 */
+/* ---------------------------------------------------- */
 
-
-
-.div-styling{
-    padding: 10px;
-    border: 1px solid;
-    border-radius: 10px;
-    background-color: #646464;
+#priority-pressed {
+  background-color: red;
 }
 
 #tdwidth{
@@ -163,100 +309,5 @@ span{
     top: -130%;
     visibility: visible;
     opacity: 1;
-    
-}
-
-.add-button-style{
-    vertical-align: middle;
-    margin-left: -10px;
-    margin-top: -6px;
-    
 
 }
-
-.priority-Styling{
-    
-    margin-left: 15px;
-    width: 34px;
-    padding: 4px;
-    padding-right: 0px;
-    padding-left: 8px;
-    vertical-align: middle;
-    border-radius: 10px;
-    align-items: center;
-}
-
-.pad{
-   text-align: center;
-}
-
-.navbutton2 {
-    padding: 0.6em 2em;
-    border: none;
-    outline: none;
-    color: rgb(255, 255, 255);
-    background: #111;
-    cursor: pointer;
-    position: relative;
-    z-index: 0;
-    border-radius: 10px;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    margin-top: 50px;
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-
-  .navbutton2:before {
-    content: "";
-    background: linear-gradient(
-      45deg,
-      #ff0000,
-      #ff7300,
-      #fffb00,
-      #48ff00,
-      #00ffd5,
-      #002bff,
-      #7a00ff,
-      #ff00c8,
-      #ff0000
-    );
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    background-size: 400%;
-    z-index: -1;
-    filter: blur(5px);
-    -webkit-filter: blur(5px);
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
-    animation: glowing-button-85 20s linear infinite;
-    transition: opacity 0.3s ease-in-out;
-    border-radius: 10px;
-  }
-
-  @keyframes glowing-button-85 {
-    0% {
-      background-position: 0 0;
-    }
-    50% {
-      background-position: 400% 0;
-    }
-    100% {
-      background-position: 0 0;
-    }
-  }
-
-  .navbutton2:after {
-    z-index: -1;
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #222;
-    left: 0;
-    top: 0;
-    border-radius: 10px;
-  }
-
