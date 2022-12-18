@@ -135,8 +135,12 @@ export class ListsService {
    */
 
   addTodoTask(taskToAdd:string, priority:boolean): void {
-    if(priority)
+    if(priority){
       this.todoList.unshift(new Task(this.currentId++, taskToAdd));
+      this.favoriteList.push(new Task(this.currentId++, taskToAdd))
+      this.favoriteListBehave.next([...this.favoriteList]);
+      console.log(this.favoriteList)
+    }
     else
       this.todoList.push(new Task(this.currentId++, taskToAdd));
     this.todoListBehave.next([...this.todoList]);
@@ -200,7 +204,7 @@ export class ListsService {
 
   /**
    *
-   *  CPMPLETED LIST FUNCTIONS
+   *  COMPLETED LIST FUNCTIONS
    *
    */
 
@@ -241,4 +245,11 @@ export class ListsService {
     this.completedList.splice(taskIndex, 1);
     this.completedListBehave.next([...this.completedList]);
   }
+
+/**
+ *
+ *  FAVORITE LIST FUNCTIONS
+ *
+ */
+
 }

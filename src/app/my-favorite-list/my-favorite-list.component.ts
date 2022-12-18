@@ -25,6 +25,8 @@ export class MyFavoriteListComponent{
   taskToAdd: string = '';
   taskToEdit: string = '';
 
+  priority: boolean = false;
+
   constructor(private listsService: ListsService) {
     listsService.favoriteListObserve.subscribe(data => {this.favoriteList=data})
   }
@@ -46,8 +48,8 @@ export class MyFavoriteListComponent{
   *
   */
 
-  addTask() {
-  }
+ addFavoriteTask() {
+}
 
 
  /**

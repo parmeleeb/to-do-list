@@ -1,7 +1,8 @@
+<div class="list-head"> <button (click)="toggleVisible()" class="navbutton2"> My Favorite List</button> </div>
+
 <main *ngIf="visible" class="list">
 
     <div id="displayStyle">
-        <div style="text-align: center"><h2>My Favorite List</h2></div>
 
         <!-- List of To Do Items -->
 
@@ -15,10 +16,11 @@
             </thead>
 
             <tbody>
+                
                 <ng-container *ngFor="let task of favoriteList" id="to-do-list">
                     <tr>
-                        <td *ngIf="!task.toEdit">{{ taskToEdit }}</td>
-                        <td *ngIf="task.toEdit"> <input [(ngModel)]="task.message" class="editing-styling"/> </td>
+                        <td *ngIf="!task.toEdit">{{ task.message }}</td>
+                        <td *ngIf="task.toEdit"> <input [(ngModel)]="taskToEdit" class="editing-styling"/> </td>
                         <td id="tdwidth" class="tr-alignment">
 
                             <button *ngIf="!task.toEdit" class="material-icons">edit</button>

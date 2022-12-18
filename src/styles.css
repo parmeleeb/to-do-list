@@ -95,11 +95,10 @@ input{
 
 button{
     padding: 4px;
-    margin-bottom: 3px;
-    margin-right: 2px;
+    margin: 3px;
     border-radius: 10px;
     border: 1px solid;
-    box-shadow: 0px 3px 0px 0px rgb(34, 34, 34);
+    box-shadow: 0px 3px 0px 0px rgb(49, 83, 59);
 }
 
 button:hover{
@@ -126,6 +125,7 @@ span{
     vertical-align: middle;
     margin-left: -10px;
     margin-top: -6px;
+    margin-top: 1px;
 }
 
 .add-button-styling{
@@ -139,11 +139,21 @@ span{
     width: 100%;
 }
 
-.div-styling{
+/* .div-styling{
     padding: 10px;
     border: 1px solid;
     border-radius: 10px;
     background-color: #646464;
+} */
+
+.div-styling{
+    padding: 10px;
+    border: 1px solid;
+    padding-left: 10px;
+    padding-right: 20px;
+    border-radius: 10px;
+    background-color: #646464;
+   
 }
 
 .list-head {
@@ -233,26 +243,40 @@ span{
 }
 
 .priority-Styling{
-
-    margin-left: 15px;
-    width: 34px;
+    width: 50px;
+    height: 40px;
     padding: 4px;
-    padding-right: 0px;
-    padding-left: 8px;
     vertical-align: middle;
     border-radius: 10px;
-    align-items: center;
+    font-size: 35px;
+    margin-bottom: 0px;
 }
 
 .textbox-styling{
-  height: 20px;
-  width: 80%;
+  min-width: 100%;
+  max-width: 100%;
+  border-radius: 10px;
+  padding: 5px;
+  font-size: 18px;
+  height: 6em;
+  max-height: 10em;
+  min-height: 3em;
 }
 
 .tr-alignment{
     text-align: end;
 }
 
+.text-area-buttons{
+    margin-left: 10px;
+    text-align: center;
+    padding: 5px;
+}
+
+.completelist-button{
+    margin-right: 0px;
+    margin-left: 0px;
+}
 
 /* ---------------------------------------------------- */
 /*                    style by ID                       */
@@ -265,18 +289,18 @@ span{
 }
 
 #tdwidth{
-    width: 215px;
+    width: 135px;
 }
 
 #tooltip{
-    position:absolute;
+    position:relative;
     cursor: pointer;
     padding: 4px;
     font-size: 18px;
     font-weight: bold;
-    width: 1px;
-    vertical-align: middle;
-    margin-left: 15px;
+    width: 0px;
+    margin-left: 25px;
+    height: 30px;
 }
 
 #tooltipText{
@@ -306,8 +330,8 @@ span{
 }
 
 #tooltip:hover #tooltipText{
-    top: -130%;
+    top: -170%;
+    left: 30%;
     visibility: visible;
     opacity: 1;
-
 }

@@ -9,13 +9,14 @@
         <div class="div-styling">
 
             <label for="completed"></label>
-            <input [(ngModel)]="taskToAdd" type="text" name="completed" placeholder="Enter completed task..." class="textbox-styling" />
+            <textarea class="textbox-styling" [(ngModel)]="taskToAdd" type="text" name="completed" placeholder="Enter new task..."></textarea>
 
+          <div class="text-area-buttons completelist-button">
             <span id="tooltip">
                 <span id="tooltipText">Add to list</span>
-                <button (click)="addTask()" id="add-completed" class="material-icons add-button-style"> post_add </button>
+                <button (click)="addTask()" id="tooltip add-completed" class="material-icons add-button-style priority-Styling"> post_add </button>
             </span>
-
+          </div>
         </div>
 
         <!-- List of To Do Items -->

@@ -7,16 +7,19 @@
     <div id="displayStyle">
 
         <div class="div-styling">
+            
             <label for="to-do"></label>
-            <input [(ngModel)]="taskToAdd" type="text" name="to-do" placeholder="Enter new task..." class="textbox-styling" />
+            <textarea class="textbox-styling" [(ngModel)]="taskToAdd" type="text" name="to-do" placeholder="Enter new task..." ></textarea>
 
+            <div class="text-area-buttons">
             <button *ngIf="priority" (click)="togglePriority()" id="priority-pressed" class="priority-Styling material-icons"> whatshot </button>
             <button *ngIf="!priority" (click)="togglePriority()" class="priority-Styling material-icons"> whatshot </button>
 
             <span id="tooltip">
                 <span id="tooltipText">Add to list</span>
-                <button (click)="addTask()" id="tooltip add-to-do" class="material-icons add-button-style"> post_add </button>
+                <button (click)="addTask()" id="tooltip add-to-do" class="material-icons add-button-style priority-Styling"> post_add </button>
             </span>
+        </div>
         </div>
 
         <!-- List of To Do Items -->
