@@ -135,8 +135,9 @@ span{
     border: 0px;
 }
 
-.editing-styling{
-    width: 100%;
+.completelist-button{
+    margin-right: 0px;
+    margin-left: 0px;
 }
 
 /* .div-styling{
@@ -156,8 +157,13 @@ span{
 
 }
 
+.editing-styling{
+    width: 100%;
+}
+
+
 .list-head {
-  text-align: center;
+    text-align: center;
 }
 
 .material-icons{
@@ -242,7 +248,7 @@ span{
     text-align: center;
 }
 
-.priority-Styling{
+.favorite-Styling{
     width: 50px;
     height: 40px;
     padding: 4px;
@@ -250,6 +256,10 @@ span{
     border-radius: 10px;
     font-size: 35px;
     margin-bottom: 0px;
+}
+
+.favorite-pressed {
+  background-color: rgb(160, 200, 0);
 }
 
 .table-styling{
@@ -279,20 +289,12 @@ span{
     padding: 5px;
 }
 
-.completelist-button{
-    margin-right: 0px;
-    margin-left: 0px;
-}
 
 /* ---------------------------------------------------- */
 /*                    style by ID                       */
 /* ---------------------------------------------------- */
 /*               Organized ALPHABETICAL                 */
 /* ---------------------------------------------------- */
-
-#priority-pressed {
-  background-color: red;
-}
 
 #tdwidth{
     width: 135px;

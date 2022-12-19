@@ -1,7 +1,7 @@
 
     <!-- Section for adding item to To Do List -->
 
-<main class="list span-2">
+<main class="list">
     <div id="displayStyle">
 
         <div class="div-styling">
@@ -10,12 +10,12 @@
             <textarea class="textbox-styling" [(ngModel)]="taskToAdd" type="text" name="to-do" placeholder="Enter NEW task..." ></textarea>
 
             <div class="text-area-buttons">
-            <button *ngIf="priority" (click)="togglePriority()" id="priority-pressed" class="priority-Styling material-icons"> whatshot </button>
-            <button *ngIf="!priority" (click)="togglePriority()" class="priority-Styling material-icons"> whatshot </button>
+            <button *ngIf="!favorite" (click)="toggleFavorite()" class="favorite-Styling material-icons"> star_border </button>
+            <button *ngIf="favorite" (click)="toggleFavorite()" class="favorite-Styling material-icons favorite-pressed"> star </button>
 
             <span id="tooltip">
                 <span id="tooltipText">Add to list</span>
-                <button (click)="addTask()" id="tooltip add-to-do" class="material-icons add-button-style priority-Styling"> post_add </button>
+                <button (click)="addTask()" id="tooltip add-to-do" class="material-icons add-button-style favorite-Styling"> post_add </button>
             </span>
         </div>
         </div>
@@ -42,6 +42,8 @@
                                   <button (click)="editTask(task.message, task.id)" class="material-icons"> edit</button>
                                   <button (click)="completeTask(task.id)" class="material-icons">done</button>
                                   <button (click)="deleteTask(task.id)" class="material-icons">delete</button>
+                                  <button *ngIf="task.favorite" (click)="toggleListFavorite(task.id)" class="material-icons favorite-pressed">star</button>
+                                  <button *ngIf="!task.favorite" (click)="toggleListFavorite(task.id)" class="material-icons">star_border</button>
                                   <button *ngIf="i != 0" (click)="moveUp(task.id)" class="material-icons">move_up</button>
                                   <button *ngIf="i != todoList.length-1" (click)="moveDown(task.id)" class="material-icons">move_down</button>
                               </ng-container>

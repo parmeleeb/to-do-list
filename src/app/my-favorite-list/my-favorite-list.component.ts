@@ -18,7 +18,7 @@ export class MyFavoriteListComponent{
   *
   */
 
-  visible: boolean = false;
+  visible: boolean = true;
 
   favoriteList: Task[] = [];
 
