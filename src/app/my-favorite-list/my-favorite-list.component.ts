@@ -20,7 +20,7 @@ export class MyFavoriteListComponent{
 
   visible: boolean = true;
 
-  favoriteList: Task[] = [];
+  favoriteList: any[] = [];
 
   taskToAdd: string = '';
   taskToEdit: string = '';

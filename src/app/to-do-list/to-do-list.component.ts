@@ -94,8 +94,8 @@ export class ToDoListComponent{
   toggleListFavorite(taskId:number) {
     for(let  task of this.todoList) {
       if(task.id == taskId) {
-        if(task.favorite) this.listsService.deleteFavoriteTask(taskId);
-        else this.listsService.addFavoriteTask(task.id, task.message);
+        if(task.favorite) this.listsService.deleteFavoriteTask(task.message);
+        else this.listsService.addFavoriteTask(task.message);
         task.favorite = !task.favorite;
       }
     }

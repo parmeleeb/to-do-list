@@ -24,8 +24,8 @@ export class ListsService {
   private completedListBehave = new BehaviorSubject<Task[]>([]);
   completedListObserve = this.completedListBehave.asObservable();
 
-  private favoriteList: Task[] = [];
-  private favoriteListBehave = new BehaviorSubject<Task[]>([]);
+  private favoriteList: any[] = [];
+  private favoriteListBehave = new BehaviorSubject<any[]>([]);
   favoriteListObserve = this.favoriteListBehave.asObservable();
 
 
@@ -37,9 +37,9 @@ export class ListsService {
 
   addTodoTask(taskToAdd:string, favorite:boolean): void {
     if(favorite){
-      const favoriteTask = new Task(this.currentId, taskToAdd, true)
+      const favoriteTask = new Task(this.currentId++, taskToAdd, true)
       this.todoList.unshift(favoriteTask);
-      this.addFavoriteTask(this.currentId++, taskToAdd);
+      this.addFavoriteTask(taskToAdd);
     }
     else
       this.todoList.push(new Task(this.currentId++, taskToAdd, false));
@@ -152,20 +152,28 @@ export class ListsService {
  *
  */
 
-  addFavoriteTask(taskId:number, taskMessage:string) {
-    this.favoriteList.push(new Task(this.currentId++, taskMessage, true))
+  addFavoriteTask(taskMessage:string) {
+    let alreadyFavorite = false;
+    for(let favorite of this.favoriteList) {
+      if(taskMessage == favorite.message) alreadyFavorite = true;
+    }
+    if(!alreadyFavorite){
+      this.favoriteList.push({message:taskMessage, toEdit:false})
+      this.favoriteListBehave.next([...this.favoriteList]);
+    }
+  }
+
+  deleteFavoriteTask(taskMessage:string) {
+    for(let index in this.favoriteList) {
+      if(taskMessage == this.favoriteList[index].message) this.favoriteList.splice(Number(index), 1);
+    }
     this.favoriteListBehave.next([...this.favoriteList]);
   }
 
-  deleteFavoriteTask(taskId:number) {
-    let taskIndex = -1;
+    editFavorite(oldMessage:string, newMessage:string):void {
     for(let index in this.favoriteList) {
-      if(this.favoriteList[index].id == taskId) {
-        taskIndex = Number(index);
-        break;
-      }
+      if(oldMessage == this.favoriteList[index].message) this.favoriteList[index].message = newMessage;
     }
-    this.favoriteList.splice(taskIndex, 1);
     this.favoriteListBehave.next([...this.favoriteList]);
   }
 
