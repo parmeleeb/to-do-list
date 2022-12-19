@@ -1,12 +1,48 @@
+/* ---------------------------------------------------- */
+/*                    style by TAG                      */
+/* ---------------------------------------------------- */
+/*          Organized by SCOPE / page ORDER             */
+/* ---------------------------------------------------- */
+
 *{
     margin: 0px;
-    padding: 0px;
     border: 0px;
+    padding: 0px;
 }
 
 body{
-    background-color: 	#E7F3EF;
+    background-image: url('assets/images/bgc.jpg');
+}
 
+footer{
+  background-color: #353535;
+  text-align: center;
+  padding: 5px;
+  font-style: italic;
+  color: white;
+  bottom: 0px;
+  position: fixed;
+  width: 100%;
+}
+
+main{
+  padding-left: 5px;
+  padding-right: 5px;
+  max-width: 1500px;
+  min-width: 600px;
+  margin: 0px auto;
+}
+
+h1{
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    background-color: #3f3f3f;
+    color: white;
+    position: fixed;
+    float: top;
+    top: 0px;
+    width: 100%;
 }
 
 h2{
@@ -20,24 +56,49 @@ h2{
     display: inline-block;
 }
 
+table{
+    margin-top: 10px;
+    margin-bottom: 40px;
+    width: 100%;
+    border: 1px solid;
+    background-color: #bebebe;
+    background-image: url('assets/images/table.webp');
+}
+
+th{
+    border-bottom: 1px solid;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 5px;
+    background-color: #636363;
+}
+
+tr{
+    border: 1px solid black;
+}
+
+td{
+    padding: 2px;
+    border-bottom: 1px solid;
+    text-align: center;
+    font-size: large;
+    height: 80px;
+}
+
 input{
     font-size: 15px;
     padding: 4px;
     font-size: large;
     background-color: #d8d8d8;
-}
-
-.textbox-styling{
-    width: 80%;
+    vertical-align: middle;
 }
 
 button{
     padding: 4px;
-    margin-bottom: 3px;
-    margin-right: 2px;
+    margin: 3px;
     border-radius: 10px;
     border: 1px solid;
-    box-shadow: 0px 3px 0px 0px rgb(34, 34, 34);
+    box-shadow: 0px 3px 0px 0px rgb(49, 83, 59);
 }
 
 button:hover{
@@ -49,6 +110,24 @@ button:active{
     box-shadow: 0px 1px 0px 0px rgb(53, 53, 53);
 }
 
+span{
+    padding-left: 3px;
+}
+
+
+/* ---------------------------------------------------- */
+/*                  style by CLASS                      */
+/* ---------------------------------------------------- */
+/*               Organized ALPHABETICAL                 */
+/* ---------------------------------------------------- */
+
+.add-button-style{
+    vertical-align: middle;
+    margin-left: -10px;
+    margin-top: -6px;
+    margin-top: 1px;
+}
+
 .add-button-styling{
     padding: 4px 10px;
     background-color: #353535;
@@ -56,119 +135,36 @@ button:active{
     border: 0px;
 }
 
+.editing-styling{
+    width: 100%;
+}
+
+/* .div-styling{
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 10px;
+    background-color: #646464;
+} */
+
+.div-styling{
+    padding: 10px;
+    border: 1px solid;
+    padding-left: 10px;
+    padding-right: 20px;
+    border-radius: 10px;
+    background-color: #646464;
+   
+}
+
+.list-head {
+  text-align: center;
+}
+
 .material-icons{
     color: white;
     background-color: #2c2c2c;
     border: 0px;
     width: 40px;
-}
-
-table{
-    margin-top: 10px;
-    margin-bottom: 40px;
-    width: 100%;
-    border: 1px solid;
-    background-color: #bebebe;
-}
-
-.editing-styling{
-    width: 100%;
-
-}
-
-th{
-    border-bottom: 1px solid;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 5px;
-    background-color: #636363;
-
-
-}
-
-tr{
-    border: 1px solid black;
-}
-
-.tr-alignment{
-    text-align: end;
-
-}
-
-td{
-    padding: 2px;
-    border-bottom: 1px solid;
-    text-align: center;
-    font-size: large;
-    height: 80px;
-}
-
-
-span{
-    padding-left: 3px;
-}
-
-
-
-.div-styling{
-    padding: 10px;
-    border: 1px solid;
-    border-radius: 10px;
-    background-color: #646464;
-}
-
-#tdwidth{
-    width: 215px;
-}
-
-#tooltip{
-    position:absolute;
-    cursor: pointer;
-
-    padding: 4px;
-    font-size: 18px;
-    font-weight: bold;
-    width: 30px;
-}
-
-#tooltipText{
-    position: absolute;
-    left: 95%;
-    top: 0px;
-    transform: translateX(-50%);
-    border: 1px solid;
-    color: #000;
-    white-space: nowrap;
-    padding: 4px 10px;
-    border-radius: 5px;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.5s ease ;
-}
-
-#tooltipText::before{
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 100%;
-    transform: translateX(-50%);
-    border: 10px solid;
-    border-color: #000 rgba(214, 203, 203, 0) #0000 #0000;
-
-}
-
-#tooltip:hover #tooltipText{
-    top: -130%;
-    visibility: visible;
-    opacity: 1;
-}
-
-.padding{
-    margin-left: 10px;
-}
-
-.pad{
-   text-align: center;
 }
 
 .navbutton2 {
@@ -189,19 +185,19 @@ span{
     margin-bottom: 10px;
   }
 
-  .navbutton2:before {
+.navbutton2:before {
     content: "";
     background: linear-gradient(
-      45deg,
-      #ff0000,
-      #ff7300,
-      #fffb00,
-      #48ff00,
-      #00ffd5,
-      #002bff,
-      #7a00ff,
-      #ff00c8,
-      #ff0000
+        45deg,
+        #ff0000,
+        #ff7300,
+        #fffb00,
+        #48ff00,
+        #00ffd5,
+        #002bff,
+        #7a00ff,
+        #ff00c8,
+        #ff0000
     );
     position: absolute;
     top: -2px;
@@ -215,21 +211,9 @@ span{
     animation: glowing-button-85 20s linear infinite;
     transition: opacity 0.3s ease-in-out;
     border-radius: 10px;
-  }
+}
 
-  @keyframes glowing-button-85 {
-    0% {
-      background-position: 0 0;
-    }
-    50% {
-      background-position: 400% 0;
-    }
-    100% {
-      background-position: 0 0;
-    }
-  }
-
-  .navbutton2:after {
+.navbutton2:after {
     z-index: -1;
     content: "";
     position: absolute;
@@ -239,5 +223,115 @@ span{
     left: 0;
     top: 0;
     border-radius: 10px;
-  }
+}
 
+/* this goes with the navbutton2 section */
+@keyframes glowing-button-85 {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.pad{
+    text-align: center;
+}
+
+.priority-Styling{
+    width: 50px;
+    height: 40px;
+    padding: 4px;
+    vertical-align: middle;
+    border-radius: 10px;
+    font-size: 35px;
+    margin-bottom: 0px;
+}
+
+.textbox-styling{
+  min-width: 100%;
+  max-width: 100%;
+  border-radius: 10px;
+  padding: 5px;
+  font-size: 18px;
+  height: 6em;
+  max-height: 10em;
+  min-height: 3em;
+}
+
+.tr-alignment{
+    text-align: end;
+}
+
+.text-area-buttons{
+    margin-left: 10px;
+    text-align: center;
+    padding: 5px;
+}
+
+.completelist-button{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+/* ---------------------------------------------------- */
+/*                    style by ID                       */
+/* ---------------------------------------------------- */
+/*               Organized ALPHABETICAL                 */
+/* ---------------------------------------------------- */
+
+#priority-pressed {
+  background-color: red;
+}
+
+#tdwidth{
+    width: 135px;
+}
+
+#tooltip{
+    position:relative;
+    cursor: pointer;
+    padding: 4px;
+    font-size: 18px;
+    font-weight: bold;
+    width: 0px;
+    margin-left: 25px;
+    height: 30px;
+}
+
+#tooltipText{
+    position:absolute;
+    left: 95%;
+    top: 0px;
+    transform: translateX(-45%);
+    color: white;
+    white-space: nowrap;
+    padding: 4px 10px;
+    border-radius: 5px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease ;
+    background-color: #353535;
+}
+
+#tooltipText::before{
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    border: 10px solid;
+    border-color: #353535 rgba(214, 203, 203, 0) #0000 #0000;
+
+}
+
+#tooltip:hover #tooltipText{
+    top: -170%;
+    left: 30%;
+    visibility: visible;
+    opacity: 1;
+}

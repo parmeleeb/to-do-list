@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { Validator } from '@angular/forms';
+import { Component } from '@angular/core';
 import { Task } from '../models/task';
 import { ListsService } from '../Services/lists.service';
 
@@ -11,24 +10,43 @@ import { ListsService } from '../Services/lists.service';
 })
 export class ToDoListComponent {
 
-  constructor(private listsService: ListsService) {
-    listsService.todoListObserve.subscribe(data => {this.todoList=data})
 
-  }
+ /**
+  *
+  * VARIABLE DECLARATIONS
+  *
+  */
 
   toDoVisible: boolean = true;
+
+  todoList: Task[] = []
+
+  taskToAdd: string = '';
+  priority: boolean = false;
+
+  taskToEdit: string =''
+
+  constructor(private listsService: ListsService) {
+    listsService.todoListObserve.subscribe(data => {this.todoList=data})
+  }
+
+
+ /**
+  *
+  * PAGE-WIDE FUNCTION(S)
+  *
+  */
 
   toggleVisible() {
     this.toDoVisible = !this.toDoVisible;
   }
 
 
-  todoList: any = []
-
-  taskToAdd: string = '';
-  priority: boolean = false;
-  taskToEdit: string =''
-
+ /**
+  *
+  * NEW TASK FUNCTIONS
+  *
+  */
 
   addTask() {
     this.listsService.addTodoTask(this.taskToAdd, this.priority);
@@ -36,29 +54,16 @@ export class ToDoListComponent {
     this.priority = false;
   }
 
-
-
-  deleteTask(taskId:number) {
-    this.listsService.deleteTodoTask(taskId)
+  togglePriority() {
+    this.priority = !this.priority;
   }
 
-  completeTask(taskId:number) {
-    this.listsService.completeTask(taskId)
 
-  }
-
-  discardEdit() {
-    for(let task of this.todoList) task.toEdit = false;
-    this.taskToEdit = '';
-  }
-
-  moveUp(taskId:number) {
-    this.listsService.moveUp(taskId)
-  }
-
-  moveDown(taskId:number) {
-    this.listsService.moveDown(taskId)
-  }
+ /**
+  *
+  * ACTION PANE FUNCTIONS
+  *
+  */
 
   editTask(taskMessage: string, taskId: number) {
     for(let  task of this.todoList) {
@@ -75,6 +80,28 @@ export class ToDoListComponent {
     for(let task of this.todoList) task.toEdit = false;
     this.listsService.editTodo(taskId, this.taskToEdit);
     this.taskToEdit = '';
+  }
+
+  discardEdit() {
+    for(let task of this.todoList) task.toEdit = false;
+    this.taskToEdit = '';
+  }
+
+  completeTask(taskId:number) {
+    this.listsService.completeTask(taskId)
+
+  }
+
+  deleteTask(taskId:number) {
+    this.listsService.deleteTodoTask(taskId)
+  }
+
+  moveUp(taskId:number) {
+    this.listsService.moveUp(taskId)
+  }
+
+  moveDown(taskId:number) {
+    this.listsService.moveDown(taskId)
   }
 
 }
