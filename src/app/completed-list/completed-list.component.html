@@ -1,15 +1,13 @@
 
 <!-- Section for adding item to To Do List -->
 
-<div class="list-head"> <button (click)="toggleVisible()" class="navbutton2"> Completed Task </button></div>
-
-<main *ngIf="completeListVisible" class="list">
+<main class="list">
     <div id="displayStyle">
 
         <div class="div-styling">
 
             <label for="completed"></label>
-            <textarea class="textbox-styling" [(ngModel)]="taskToAdd" type="text" name="completed" placeholder="Enter new task..."></textarea>
+            <textarea class="textbox-styling" [(ngModel)]="taskToAdd" type="text" name="completed" placeholder="Enter COMPLETED task..."></textarea>
 
           <div class="text-area-buttons completelist-button">
             <span id="tooltip">
@@ -25,7 +23,7 @@
 
             <thead >
                 <tr>
-                    <th class="table-styling">To-do Task</th>
+                    <th class="table-styling">Completed Task</th>
                     <th id="tdwidth" class="table-styling">Action Pane</th>
                 </tr>
             </thead>

@@ -7,4 +7,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'to-do-list';
+
+  todoVisible = true;
+  completedVisible = true;
+
+
+  toggleTodoVisible() {
+    this.todoVisible = !this.todoVisible;
+  }
+
+  toggleCompletedVisible(){
+    this.completedVisible = !this.completedVisible;
+  }
+
+
 }

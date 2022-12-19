@@ -1,15 +1,13 @@
 
     <!-- Section for adding item to To Do List -->
 
-<div class="list-head"> <button (click)="toggleVisible()" class="navbutton2"> To-Do </button> </div>
-
-<main *ngIf="toDoVisible" class="list">
+<main class="list span-2">
     <div id="displayStyle">
 
         <div class="div-styling">
-            
+
             <label for="to-do"></label>
-            <textarea class="textbox-styling" [(ngModel)]="taskToAdd" type="text" name="to-do" placeholder="Enter new task..." ></textarea>
+            <textarea class="textbox-styling" [(ngModel)]="taskToAdd" type="text" name="to-do" placeholder="Enter NEW task..." ></textarea>
 
             <div class="text-area-buttons">
             <button *ngIf="priority" (click)="togglePriority()" id="priority-pressed" class="priority-Styling material-icons"> whatshot </button>
@@ -36,7 +34,7 @@
               <tbody>
                   <ng-container *ngFor="let task of todoList; let i = index" id="to-do-list">
                       <tr>
-                          <td *ngIf="!task.toEdit">{{ task.message }}</td>
+                          <td *ngIf="!task.toEdit"><pre>{{ task.message }}</pre></td>
                           <td *ngIf="task.toEdit"> <input [(ngModel)]="taskToEdit" id="edit-input" class="editing-styling"/> </td>
                           <td id="tdwidth" class="tr-alignment">
 

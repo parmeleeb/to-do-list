@@ -37,11 +37,6 @@ export class CompletedListComponent{
   *
   */
 
-  toggleVisible(){
-    this.completeListVisible = !this.completeListVisible;
-  }
-
-
  /**
   *
   * NEW TASK FUNCTION(S)

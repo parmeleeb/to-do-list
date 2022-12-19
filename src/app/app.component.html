@@ -1,12 +1,21 @@
 
-<app-header></app-header>
+    <app-header></app-header>
 
-<app-to-do-list></app-to-do-list>
+  <div id="main-display">
 
-<app-completed-list></app-completed-list>
+    <div class="list-head"> <button (click)="toggleTodoVisible()" class="navbutton2"> To-Do </button> </div>
 
-<app-my-favorite-list></app-my-favorite-list>
+    <div class="list-head"> <button (click)="toggleCompletedVisible()" class="navbutton2"> Completed Task </button></div>
 
-<router-outlet> </router-outlet>
+    <app-to-do-list *ngIf="todoVisible"></app-to-do-list>
 
-<app-footer></app-footer>
+    <app-completed-list *ngIf="completedVisible"></app-completed-list>
+
+  </div>
+
+    <app-my-favorite-list></app-my-favorite-list>
+
+    <router-outlet> </router-outlet>
+
+    <app-footer></app-footer>
+

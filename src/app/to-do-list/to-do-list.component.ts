@@ -37,10 +37,6 @@ export class ToDoListComponent {
   *
   */
 
-  toggleVisible() {
-    this.toDoVisible = !this.toDoVisible;
-  }
-
 
  /**
   *
