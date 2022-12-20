@@ -16,116 +16,13 @@ export class ListsService {
 
   currentId:number = 100;
 
-  private todoList: Task[] = [{
-    id: 0,
-    message: 'Declutter or Deep Clean One Room',
-    toEdit: false
-  },
-  {
-    id: 1,
-    message: 'Go through my emails',
-    toEdit: false
-  },
-  {
-    id: 2,
-    message: "Review previous month's income and expenses",
-    toEdit: false
-  },
-  {
-    id: 3,
-    message: "Pay bills",
-    toEdit: false
-  },
-  {
-    id: 4,
-    message: "Backup important computer files to a USB drive",
-    toEdit: false
-  },
-  {
-    id: 5,
-    message: "Get prescriptions refilled",
-    toEdit: false
-  },
-  {
-    id: 6,
-    message: "Clean out the fridge and pantry",
-    toEdit: false
-  },
-  {
-    id: 7,
-    message: "Switch out contact lenses",
-    toEdit: false
-  },
-  {
-    id: 8,
-    message: "Organize my iphone photo library",
-    toEdit: false
-  },
-  {
-    id: 9,
-    message: "Chech mail box",
-    toEdit: false
-  }];
-  private todoListBehave = new BehaviorSubject<Task[]>([
-    {
-      id: 0,
-      message: 'Declutter or Deep Clean One Room',
-      toEdit: false
-    },
-    {
-      id: 1,
-      message: 'Go through my emails',
-      toEdit: false
-    },
-    {
-      id: 2,
-      message: "Review previous month’s income and expenses",
-      toEdit: false
-    },
-    {
-      id: 3,
-      message: "Pay bills",
-      toEdit: false
-    },
-    {
-      id: 4,
-      message: "Backup important computer files to a USB drive",
-      toEdit: false
-    },
-    {
-      id: 5,
-      message: "Get prescriptions refilled",
-      toEdit: false
-    },
-    {
-      id: 6,
-      message: "Clean out the fridge and pantry",
-      toEdit: false
-    },
-    {
-      id: 7,
-      message: "Switch out contact lenses",
-      toEdit: false
-    },
-    {
-      id: 8,
-      message: "Organize my iphone photo library",
-      toEdit: false
-    },
-    {
-      id: 9,
-      message: "Chech mail box",
-      toEdit: false
-    }]);
+  private todoList: Task[] = [];
+  private todoListBehave = new BehaviorSubject<Task[]>([]);
   todoListObserve = this.todoListBehave.asObservable();
 
-  private completedList: Task[] = [new Task(0,'helo')];
-  private completedListBehave = new BehaviorSubject<Task[]>([new Task(0,'helo')]);
+  private completedList: Task[] = [];
+  private completedListBehave = new BehaviorSubject<Task[]>([]);
   completedListObserve = this.completedListBehave.asObservable();
-
-  private favoriteList: Task[] = [];
-  private favoriteListBehave = new BehaviorSubject<Task[]>([]);
-  favoriteListObserve = this.favoriteListBehave.asObservable();
 
 
   /**
@@ -134,15 +31,12 @@ export class ListsService {
    *
    */
 
-  addTodoTask(taskToAdd:string, priority:boolean): void {
-    if(priority){
-      this.todoList.unshift(new Task(this.currentId++, taskToAdd));
-      this.favoriteList.push(new Task(this.currentId++, taskToAdd))
-      this.favoriteListBehave.next([...this.favoriteList]);
-      console.log(this.favoriteList)
+  addTodoTask(taskToAdd:string, favorite:boolean): void {
+    if(favorite){
+      this.todoList.unshift(new Task(this.currentId++, taskToAdd, true));
     }
     else
-      this.todoList.push(new Task(this.currentId++, taskToAdd));
+      this.todoList.push(new Task(this.currentId++, taskToAdd, false));
     this.todoListBehave.next([...this.todoList]);
   }
 
@@ -179,6 +73,14 @@ export class ListsService {
     this.todoListBehave.next([...this.todoList]);
   }
 
+  toggleTodoFavorite(taskId:number): void{
+    for(let task of this.todoList) {
+      if(task.id == taskId)
+        task.favorite = !task.favorite;
+    }
+    this.todoListBehave.next([...this.todoList]);
+  }
+
   moveUp(taskId:number):void {
     for (let index in this.todoList) {
       if (taskId === this.todoList[index].id) {
@@ -209,7 +111,7 @@ export class ListsService {
    */
 
   addCompletedTask(taskToAdd:string): void {
-    this.completedList.push(new Task(this.currentId++, taskToAdd));
+    this.completedList.push(new Task(this.currentId++, taskToAdd, false));
     this.completedListBehave.next(this.completedList);
   }
 
@@ -234,6 +136,14 @@ export class ListsService {
     this.completedListBehave.next([...this.completedList]);
   }
 
+  toggleCompletedFavorite(taskId:number): void{
+    for(let task of this.completedList) {
+      if(task.id == taskId)
+        task.favorite = !task.favorite;
+    }
+    this.completedListBehave.next([...this.completedList]);
+  }
+
   deleteCompletedTask(taskId:number): void {
     let taskIndex = -1;
     for(let index in this.completedList) {
@@ -245,11 +155,4 @@ export class ListsService {
     this.completedList.splice(taskIndex, 1);
     this.completedListBehave.next([...this.completedList]);
   }
-
-/**
- *
- *  FAVORITE LIST FUNCTIONS
- *
- */
-
 }

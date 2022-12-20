@@ -1,23 +1,24 @@
 
     <!-- Section for adding item to To Do List -->
 
-<main class="list span-2">
+<main class="list">
     <div id="displayStyle">
-
         <div class="div-styling">
-
             <label for="to-do"></label>
-            <textarea class="textbox-styling" [(ngModel)]="taskToAdd" type="text" name="to-do" placeholder="Enter NEW task..." ></textarea>
+                <textarea class="textbox-styling" [(ngModel)]="taskToAdd" type="text" name="to-do" placeholder="Enter NEW task..." ></textarea>
 
             <div class="text-area-buttons">
-            <button *ngIf="priority" (click)="togglePriority()" id="priority-pressed" class="priority-Styling material-icons"> whatshot </button>
-            <button *ngIf="!priority" (click)="togglePriority()" class="priority-Styling material-icons"> whatshot </button>
+                <span class="tooltip">
+                    <span class="tooltipText">Add to favorite list</span>
+                        <button *ngIf="!favorite" (click)="toggleFavorite()" class="favorite-Styling material-icons add-button-style"> star_border </button>            
+                        <button *ngIf="favorite" (click)="toggleFavorite()" class="favorite-Styling material-icons favorite-pressed add-button-style "> star </button>
+                </span>
 
-            <span id="tooltip">
-                <span id="tooltipText">Add to list</span>
-                <button (click)="addTask()" id="tooltip add-to-do" class="material-icons add-button-style priority-Styling"> post_add </button>
-            </span>
-        </div>
+                <span class="tooltip">
+                    <span class="tooltipText">Add to list</span>
+                    <button (click)="addTask()" id="add-to-do" class="material-icons add-button-style favorite-Styling"> post_add </button>
+                </span>
+            </div>
         </div>
 
         <!-- List of To Do Items -->
@@ -31,25 +32,53 @@
                 </tr>
             </thead>
 
-              <tbody>
-                  <ng-container *ngFor="let task of todoList; let i = index" id="to-do-list">
-                      <tr>
-                          <td *ngIf="!task.toEdit"><pre>{{ task.message }}</pre></td>
-                          <td *ngIf="task.toEdit"> <input [(ngModel)]="taskToEdit" id="edit-input" class="editing-styling"/> </td>
-                          <td id="tdwidth" class="tr-alignment">
+            <tbody>
+                <ng-container *ngFor="let task of todoList; let i = index" id="to-do-list">
+                    <tr>
+                        <td *ngIf="!task.toEdit"><pre>{{ task.message }}</pre></td>
+                        <td *ngIf="task.toEdit"> <input [(ngModel)]="taskToEdit" id="edit-input" class="editing-styling"/> </td>
+                        <td id="tdwidth" class="tr-alignment">
+                            <ng-container *ngIf="!task.toEdit">
+                                <span class="tooltip">
+                                    <span class="tooltipText">Edit task</span>
+                                    <button (click)="editTask(task.message, task.id)" class="material-icons add-button-style"> edit</button>
+                                </span>
+                                <span class="tooltip">
+                                    <span class="tooltipText">Mark as complete</span>
+                                    <button (click)="completeTask(task.id)" class="material-icons add-button-style">done</button>
+                                </span>
+                                <span class="tooltip">
+                                    <span class="tooltipText">Delete task</span>
+                                    <button (click)="deleteTask(task.id)" class="material-icons add-button-style">delete</button>
+                                </span>
+                            
 
-                              <ng-container *ngIf="!task.toEdit">
-                                  <button (click)="editTask(task.message, task.id)" class="material-icons"> edit</button>
-                                  <button (click)="completeTask(task.id)" class="material-icons">done</button>
-                                  <button (click)="deleteTask(task.id)" class="material-icons">delete</button>
-                                  <button *ngIf="i != 0" (click)="moveUp(task.id)" class="material-icons">move_up</button>
-                                  <button *ngIf="i != todoList.length-1" (click)="moveDown(task.id)" class="material-icons">move_down</button>
-                              </ng-container>
+                                <span class="tooltip">
+                                    <span class="tooltipText">Add/Remove from favorite</span>
+                                    <button *ngIf="!task.favorite" (click)="toggleListFavorite(task.id)" class="material-icons add-button-style">star_border</button>
+                                    <button *ngIf="task.favorite" (click)="toggleListFavorite(task.id)" class="material-icons favorite-pressed add-button-style">star</button>
+                                </span>
+                                  
+                                <span *ngIf="i != 0" class="tooltip">
+                                    <span class="tooltipText">Move up</span>
+                                    <button  (click)="moveUp(task.id)" class="material-icons add-button-style">move_up</button>
+                                </span>
+                                <span *ngIf="i != todoList.length-1" class="tooltip">
+                                    <span class="tooltipText">Move down</span>
+                                    <button  (click)="moveDown(task.id)" class="material-icons add-button-style">move_down</button>
+                                </span>
+                            </ng-container>
 
-                              <ng-container *ngIf="task.toEdit">
-                                  <button (click)="confirmEdit(task.id)" class="material-icons">add_task</button>
-                                  <button (click)="discardEdit()" class="material-icons">highlight_off</button>
-                              </ng-container>
+                            <ng-container *ngIf="task.toEdit">
+                                <span class="tooltip">
+                                    <span class="tooltipText">Complete edit</span>
+                                    <button (click)="confirmEdit(task.id)" class="material-icons add-button-style">add_task</button>
+                                </span>
+                                <span class="tooltip">
+                                    <span class="tooltipText">Cancel edit</span>
+                                    <button (click)="discardEdit()" class="material-icons add-button-style">highlight_off</button>
+                                </span>
+                            </ng-container>
 
                           </td>
                       </tr>

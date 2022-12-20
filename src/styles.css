@@ -121,12 +121,6 @@ span{
 /*               Organized ALPHABETICAL                 */
 /* ---------------------------------------------------- */
 
-.add-button-style{
-    vertical-align: middle;
-    margin-left: -10px;
-    margin-top: -6px;
-    margin-top: 1px;
-}
 
 .add-button-styling{
     padding: 4px 10px;
@@ -135,8 +129,9 @@ span{
     border: 0px;
 }
 
-.editing-styling{
-    width: 100%;
+.completelist-button{
+    margin-right: 0px;
+    margin-left: 0px;
 }
 
 /* .div-styling{
@@ -156,8 +151,13 @@ span{
 
 }
 
+.editing-styling{
+    width: 100%;
+}
+
+
 .list-head {
-  text-align: center;
+    text-align: center;
 }
 
 .material-icons{
@@ -242,7 +242,7 @@ span{
     text-align: center;
 }
 
-.priority-Styling{
+.favorite-Styling{
     width: 50px;
     height: 40px;
     padding: 4px;
@@ -250,6 +250,10 @@ span{
     border-radius: 10px;
     font-size: 35px;
     margin-bottom: 0px;
+}
+
+.favorite-pressed {
+  background-color: rgb(160, 200, 0);
 }
 
 .table-styling{
@@ -279,10 +283,6 @@ span{
     padding: 5px;
 }
 
-.completelist-button{
-    margin-right: 0px;
-    margin-left: 0px;
-}
 
 /* ---------------------------------------------------- */
 /*                    style by ID                       */
@@ -290,30 +290,35 @@ span{
 /*               Organized ALPHABETICAL                 */
 /* ---------------------------------------------------- */
 
-#priority-pressed {
-  background-color: red;
-}
-
 #tdwidth{
     width: 135px;
 }
 
-#tooltip{
-    position:relative;
-    cursor: pointer;
-    padding: 4px;
-    font-size: 18px;
-    font-weight: bold;
-    width: 0px;
-    margin-left: 25px;
-    height: 30px;
+.add-button-style{
+    margin-left: -10px;
+    margin-right: -5px;
+    margin-top: 2px;
+    padding-top: -4px;
 }
 
-#tooltipText{
+.tooltip{
+    position:relative;
+    cursor: pointer;
+    padding-top: 3px;
+    padding-left: 0px;
+    padding-right: 0px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 20px;
+    border: 1px solid;
+    border-radius: 50%;
+}
+
+.tooltipText{
     position:absolute;
     left: 95%;
     top: 0px;
-    transform: translateX(-45%);
+    transform: translateX(-47%);
     color: white;
     white-space: nowrap;
     padding: 4px 10px;
@@ -324,7 +329,7 @@ span{
     background-color: #353535;
 }
 
-#tooltipText::before{
+.tooltipText::before{
     content: "";
     position: absolute;
     left: 50%;
@@ -335,8 +340,8 @@ span{
 
 }
 
-#tooltip:hover #tooltipText{
-    top: -170%;
+.tooltip:hover .tooltipText{
+    top: -195%;
     left: 30%;
     visibility: visible;
     opacity: 1;

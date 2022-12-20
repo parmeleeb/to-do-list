@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Task } from '../models/task';
 import { ListsService } from '../Services/lists.service';
 
@@ -8,7 +8,7 @@ import { ListsService } from '../Services/lists.service';
   templateUrl: './to-do-list.component.html',
   styleUrls: ['./to-do-list.component.css']
 })
-export class ToDoListComponent {
+export class ToDoListComponent{
 
 
  /**
@@ -22,14 +22,13 @@ export class ToDoListComponent {
   todoList: Task[] = []
 
   taskToAdd: string = '';
-  priority: boolean = false;
+  favorite: boolean = false;
 
   taskToEdit: string =''
 
   constructor(private listsService: ListsService) {
-    listsService.todoListObserve.subscribe(data => {this.todoList=data})
+    listsService.todoListObserve.subscribe(data => {this.todoList=data});
   }
-
 
  /**
   *
@@ -45,13 +44,13 @@ export class ToDoListComponent {
   */
 
   addTask() {
-    this.listsService.addTodoTask(this.taskToAdd, this.priority);
+    this.listsService.addTodoTask(this.taskToAdd, this.favorite);
     this.taskToAdd = '';
-    this.priority = false;
+    this.favorite = false;
   }
 
-  togglePriority() {
-    this.priority = !this.priority;
+  toggleFavorite() {
+    this.favorite = !this.favorite;
   }
 
 
@@ -90,6 +89,10 @@ export class ToDoListComponent {
 
   deleteTask(taskId:number) {
     this.listsService.deleteTodoTask(taskId)
+  }
+
+  toggleListFavorite(taskId:number) {
+    this.listsService.toggleTodoFavorite(taskId);
   }
 
   moveUp(taskId:number) {
