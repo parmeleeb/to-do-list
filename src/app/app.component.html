@@ -6,7 +6,7 @@
     <app-to-do-list *ngIf="todoVisible"></app-to-do-list>
 
     <div class="list-head"> <button (click)="toggleCompletedVisible()" class="navbutton2"> Completed Task </button></div>
-    
+
     <app-completed-list *ngIf="completedVisible"></app-completed-list>
 
     <router-outlet> </router-outlet>

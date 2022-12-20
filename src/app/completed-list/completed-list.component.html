@@ -44,6 +44,11 @@
                                 <button (click)="editTask(task.message, task.id)" class="material-icons">edit</button>
                                 <button (click)="incompleteTask(task.id)" class="material-icons">redo</button>
                                 <button (click)="deleteTask(task.id)" class="material-icons">delete</button>
+                                <span class="tooltip">
+                                    <span class="tooltipText">Add/Remove from favorite</span>
+                                    <button *ngIf="!task.favorite" (click)="toggleListFavorite(task.id)" class="material-icons add-button-style">star_border</button>
+                                    <button *ngIf="task.favorite" (click)="toggleListFavorite(task.id)" class="material-icons favorite-pressed add-button-style">star</button>
+                                </span>
                             </ng-container>
 
                         </td>

@@ -24,10 +24,6 @@ export class ListsService {
   private completedListBehave = new BehaviorSubject<Task[]>([]);
   completedListObserve = this.completedListBehave.asObservable();
 
-  private favoriteList: any[] = [];
-  private favoriteListBehave = new BehaviorSubject<any[]>([]);
-  favoriteListObserve = this.favoriteListBehave.asObservable();
-
 
   /**
    *
@@ -37,9 +33,7 @@ export class ListsService {
 
   addTodoTask(taskToAdd:string, favorite:boolean): void {
     if(favorite){
-      const favoriteTask = new Task(this.currentId++, taskToAdd, true)
-      this.todoList.unshift(favoriteTask);
-      this.addFavoriteTask(taskToAdd);
+      this.todoList.unshift(new Task(this.currentId++, taskToAdd, true));
     }
     else
       this.todoList.push(new Task(this.currentId++, taskToAdd, false));
@@ -76,6 +70,14 @@ export class ListsService {
       }
     }
     this.todoList.splice(taskIndex, 1);
+    this.todoListBehave.next([...this.todoList]);
+  }
+
+  toggleTodoFavorite(taskId:number): void{
+    for(let task of this.todoList) {
+      if(task.id == taskId)
+        task.favorite = !task.favorite;
+    }
     this.todoListBehave.next([...this.todoList]);
   }
 
@@ -134,6 +136,14 @@ export class ListsService {
     this.completedListBehave.next([...this.completedList]);
   }
 
+  toggleCompletedFavorite(taskId:number): void{
+    for(let task of this.completedList) {
+      if(task.id == taskId)
+        task.favorite = !task.favorite;
+    }
+    this.completedListBehave.next([...this.completedList]);
+  }
+
   deleteCompletedTask(taskId:number): void {
     let taskIndex = -1;
     for(let index in this.completedList) {
@@ -145,36 +155,4 @@ export class ListsService {
     this.completedList.splice(taskIndex, 1);
     this.completedListBehave.next([...this.completedList]);
   }
-
-/**
- *
- *  FAVORITE LIST FUNCTIONS
- *
- */
-
-  addFavoriteTask(taskMessage:string) {
-    let alreadyFavorite = false;
-    for(let favorite of this.favoriteList) {
-      if(taskMessage == favorite.message) alreadyFavorite = true;
-    }
-    if(!alreadyFavorite){
-      this.favoriteList.push({message:taskMessage, toEdit:false})
-      this.favoriteListBehave.next([...this.favoriteList]);
-    }
-  }
-
-  deleteFavoriteTask(taskMessage:string) {
-    for(let index in this.favoriteList) {
-      if(taskMessage == this.favoriteList[index].message) this.favoriteList.splice(Number(index), 1);
-    }
-    this.favoriteListBehave.next([...this.favoriteList]);
-  }
-
-    editFavorite(oldMessage:string, newMessage:string):void {
-    for(let index in this.favoriteList) {
-      if(oldMessage == this.favoriteList[index].message) this.favoriteList[index].message = newMessage;
-    }
-    this.favoriteListBehave.next([...this.favoriteList]);
-  }
-
 }

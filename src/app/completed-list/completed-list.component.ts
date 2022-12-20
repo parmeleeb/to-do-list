@@ -83,5 +83,9 @@ export class CompletedListComponent{
   deleteTask(taskId:number) {
     this.listsService.deleteCompletedTask(taskId);
   }
+
+  toggleListFavorite(taskId:number) {
+    this.listsService.toggleCompletedFavorite(taskId);
+  }
 }
 
