@@ -56,6 +56,19 @@ h2{
     display: inline-block;
 }
 
+textarea{
+    min-width: 100%;
+    max-width: 100%;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 18px;
+    height: 6em;
+    max-height: 10em;
+    min-height: 3em;
+    resize: none;
+  }
+
+  
 table{
     margin-top: 10px;
     margin-bottom: 40px;
@@ -66,11 +79,12 @@ table{
 }
 
 th{
-    border-bottom: 1px solid;
+    border-bottom: 1px solid black;
     font-size: 20px;
     font-weight: bold;
     padding: 5px;
     background-color: #636363;
+    color: white;
 }
 
 tr{
@@ -110,9 +124,9 @@ button:active{
     box-shadow: 0px 1px 0px 0px rgb(53, 53, 53);
 }
 
-span{
+/* span{
     padding-left: 3px;
-}
+} */
 
 
 /* ---------------------------------------------------- */
@@ -121,42 +135,20 @@ span{
 /*               Organized ALPHABETICAL                 */
 /* ---------------------------------------------------- */
 
-
-.add-button-styling{
-    padding: 4px 10px;
-    background-color: #353535;
-    color: white;
-    border: 0px;
-}
-
-.completelist-button{
-    margin-right: 0px;
-    margin-left: 0px;
-}
-
-/* .div-styling{
-    padding: 10px;
-    border: 1px solid;
-    border-radius: 10px;
-    background-color: #646464;
-} */
-
-.div-styling{
+.user-input-div{
     padding: 10px;
     border: 1px solid;
     padding-left: 10px;
     padding-right: 20px;
     border-radius: 10px;
     background-color: #646464;
-
 }
 
-.editing-styling{
+.task-edit-textarea{
     width: 100%;
 }
 
-
-.list-head {
+.list-head-title {
     text-align: center;
 }
 
@@ -167,7 +159,7 @@ span{
     width: 40px;
 }
 
-.navbutton2 {
+.list-title-animation {
     padding: 0.6em 2em;
     border: none;
     outline: none;
@@ -185,7 +177,7 @@ span{
     margin-bottom: 50px;
   }
 
-.navbutton2:before {
+.list-title-animation:before {
     content: "";
     background: linear-gradient(
         45deg,
@@ -213,7 +205,7 @@ span{
     border-radius: 10px;
 }
 
-.navbutton2:after {
+.list-title-animation:after {
     z-index: -1;
     content: "";
     position: absolute;
@@ -238,9 +230,9 @@ span{
     }
 }
 
-.pad{
+/* .pad{
     text-align: center;
-}
+} */
 
 .favorite-Styling{
     width: 50px;
@@ -261,18 +253,6 @@ span{
   max-inline-size: 400px;
 }
 
-.textbox-styling{
-  min-width: 100%;
-  max-width: 100%;
-  border-radius: 10px;
-  padding: 5px;
-  font-size: 18px;
-  height: 6em;
-  max-height: 10em;
-  min-height: 3em;
-  resize: none;
-}
-
 .tr-alignment{
     text-align: end;
 }
@@ -283,23 +263,6 @@ span{
     padding: 5px;
 }
 
-
-/* ---------------------------------------------------- */
-/*                    style by ID                       */
-/* ---------------------------------------------------- */
-/*               Organized ALPHABETICAL                 */
-/* ---------------------------------------------------- */
-
-#tdwidth{
-    width: 135px;
-}
-
-.add-button-style{
-    margin-left: -10px;
-    margin-right: -5px;
-    margin-top: 2px;
-    padding-top: -4px;
-}
 
 .tooltip{
     position:relative;
@@ -319,14 +282,14 @@ span{
     left: 95%;
     top: 0px;
     transform: translateX(-47%);
-    color: white;
+    color: black;
     white-space: nowrap;
     padding: 4px 10px;
     border-radius: 5px;
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.5s ease ;
-    background-color: #353535;
+    background-color:rgb(82, 184, 209);
 }
 
 .tooltipText::before{
@@ -336,7 +299,7 @@ span{
     top: 100%;
     transform: translateX(-50%);
     border: 10px solid;
-    border-color: #353535 rgba(214, 203, 203, 0) #0000 #0000;
+    border-color: rgb(82, 184, 209) rgba(214, 203, 203, 0) #0000 #0000;
 
 }
 
@@ -345,4 +308,22 @@ span{
     left: 30%;
     visibility: visible;
     opacity: 1;
+}
+
+.tooltip-modification{
+    margin-left: -10px;
+    margin-right: -5px;
+    margin-top: 2px;
+    padding-top: -4px;
+}
+
+
+/* ---------------------------------------------------- */
+/*                    style by ID                       */
+/* ---------------------------------------------------- */
+/*               Organized ALPHABETICAL                 */
+/* ---------------------------------------------------- */
+
+#tdwidth{
+    width: 135px;
 }

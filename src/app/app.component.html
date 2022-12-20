@@ -1,11 +1,11 @@
 
     <app-header></app-header>
 
-    <div class="list-head"> <button (click)="toggleTodoVisible()" class="navbutton2"> To-Do </button> </div>
+    <div class="list-head-title"> <button (click)="toggleTodoVisible()" class="list-title-animation"> To-Do </button> </div>
 
     <app-to-do-list *ngIf="todoVisible"></app-to-do-list>
 
-    <div class="list-head"> <button (click)="toggleCompletedVisible()" class="navbutton2"> Completed Task </button></div>
+    <div class="list-head-title"> <button (click)="toggleCompletedVisible()" class="list-title-animation"> Completed Task </button></div>
 
     <app-completed-list *ngIf="completedVisible"></app-completed-list>
 
