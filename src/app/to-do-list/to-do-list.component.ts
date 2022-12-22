@@ -32,13 +32,6 @@ export class ToDoListComponent{
 
  /**
   *
-  * PAGE-WIDE FUNCTION(S)
-  *
-  */
-
-
- /**
-  *
   * NEW TASK FUNCTIONS
   *
   */

@@ -68,7 +68,7 @@ textarea{
     resize: none;
   }
 
-  
+
 table{
     margin-top: 10px;
     margin-bottom: 40px;
@@ -229,10 +229,6 @@ button:active{
         background-position: 0 0;
     }
 }
-
-/* .pad{
-    text-align: center;
-} */
 
 .favorite-Styling{
     width: 50px;

@@ -14,7 +14,7 @@ export class ListsService {
    *
    */
 
-  currentId:number = 100;
+  private currentId:number = 100;
 
   private todoList: Task[] = [];
   private todoListBehave = new BehaviorSubject<Task[]>([]);
