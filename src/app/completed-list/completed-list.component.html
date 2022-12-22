@@ -32,7 +32,7 @@
                 <ng-container *ngFor="let task of completedList" id="completed-list">
                     <tr>
                         <td *ngIf="!task.toEdit" class="table-styling">{{ task.message }}</td>
-                        <td *ngIf="task.toEdit"> <input [(ngModel)]="taskToEdit" class="task-edit-textarea"/> </td>
+                        <td *ngIf="task.toEdit"> <textarea [(ngModel)]="taskToEdit" class="task-edit-textarea"></textarea> </td>
                         <td id="tdwidth" class="table-styling tr-alignment">
 
                             <ng-container *ngIf="task.toEdit">

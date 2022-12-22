@@ -10,7 +10,7 @@
             <div class="text-area-buttons">
                 <span class="tooltip">
                     <span class="tooltipText">Mark as favorite</span>
-                        <button *ngIf="!favorite" (click)="toggleFavorite()" class="favorite-Styling material-icons tooltip-modification"> star_border </button>            
+                        <button *ngIf="!favorite" (click)="toggleFavorite()" class="favorite-Styling material-icons tooltip-modification"> star_border </button>
                         <button *ngIf="favorite" (click)="toggleFavorite()" class="favorite-Styling material-icons favorite-pressed tooltip-modification"> star </button>
                 </span>
 
@@ -36,7 +36,7 @@
                 <ng-container *ngFor="let task of todoList; let i = index" id="to-do-list">
                     <tr>
                         <td *ngIf="!task.toEdit"><pre>{{ task.message }}</pre></td>
-                        <td *ngIf="task.toEdit"> <input [(ngModel)]="taskToEdit" id="edit-input" class="task-edit-textarea"/> </td>
+                        <td *ngIf="task.toEdit"> <textarea [(ngModel)]="taskToEdit" id="edit-input" class="task-edit-textarea"></textarea> </td>
                         <td id="tdwidth" class="tr-alignment">
                             <ng-container *ngIf="!task.toEdit">
                                 <span class="tooltip">
@@ -51,14 +51,14 @@
                                     <span class="tooltipText">Delete task</span>
                                     <button (click)="deleteTask(task.id)" class="material-icons tooltip-modification">delete</button>
                                 </span>
-                            
+
 
                                 <span class="tooltip">
                                     <span class="tooltipText">Mack as favorite</span>
                                     <button *ngIf="!task.favorite" (click)="toggleListFavorite(task.id)" class="material-icons tooltip-modification">star_border</button>
                                     <button *ngIf="task.favorite" (click)="toggleListFavorite(task.id)" class="material-icons favorite-pressed tooltip-modification">star</button>
                                 </span>
-                                  
+
                                 <span *ngIf="i != 0" class="tooltip">
                                     <span class="tooltipText">Move up</span>
                                     <button  (click)="moveUp(task.id)" class="material-icons tooltip-modification">move_up</button>
